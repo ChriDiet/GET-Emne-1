@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+
+    #page {
+      display: grid;
+      justify-content: center;
+      grid-template-columns: 30px 30px;
+      grid-template-areas: "nummere up"
+        "nummere down";
+    }
+
+    .up {
+      grid-area: up;
+      font-size: 20px;
+    }
+
+    .down {
+      grid-area: down;
+      font-size: 20px;
+    }
+
+    #nummere {
+      grid-area: nummere;
+      text-align: center;
+      align-self: center;
+      font-size: 50px;
+      margin-left: -60px;
+    }
+
+    button {
+      border-radius: 3px;
+      border: none;
+      background-color: rgba(64, 137, 114, 0.709);
+      font-size: 17px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Tallnavigering</h1>
+  <div id="page"></div>
+  
+  <script>
+    show1();
+    
+    function show1() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">1</div>
+        
+      <div class="up">
+          <button onclick="show2()">x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show2()">+1</button>
+        </div>`;
+    }
+
+    function show2() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">2</div>
+        
+      <div class="up">
+          <button onclick="show4()">x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show3()">+1</button>
+        </div>`;
+    }
+
+    function show3() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">3</div>
+        
+      <div class="up">
+          <button onclick="show6()">x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show4()">+1</button>
+        </div>`;
+    }
+
+    function show4() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">4</div>
+        
+      <div class="up">
+          <button onclick="show8()">x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show5()">+1</button>
+        </div>`;
+    }
+
+    function show5() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">5</div>
+        
+      <div class="up">
+          <button onclick="show10()">x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show6()">+1</button>
+        </div>`;
+    }
+
+    function show6() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">6</div>
+        
+      <div class="up">
+          <button onclick="show9()">x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show7()">+1</button>
+        </div>`;
+    }
+
+    function show7() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">7</div>
+        
+      <div class="up">
+          <button>x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show8()">+1</button>
+        </div>`;
+    }
+    function show8() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">8</div>
+        
+      <div class="up">
+          <button>x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show9()">+1</button>
+        </div>`;
+    }
+
+    function show9() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">9</div>
+        
+      <div class="up">
+          <button>x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show10()">+1</button>
+        </div>`;
+    }
+
+    function show10() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">10</div>
+        
+      <div class="up">
+          <button>x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show11()">+1</button>
+        </div>`;
+    }
+
+    function show11() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">11</div>
+        
+      <div class="up">
+          <button>x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show12()">+1</button>
+        </div>`;
+    }
+
+    function show12() {
+      document.getElementById('page').innerHTML = /*HTML*/
+        `<div id="nummere">12</div>
+        
+      <div class="up">
+          <button>x2</button>
+        </div>
+        
+        <div class="down">
+          <button onclick="show11()">-1</button>
+        </div>`;
+    }
+
+  </script>
+</body>
+
+</html>
