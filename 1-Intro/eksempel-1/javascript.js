@@ -75,24 +75,111 @@ function showJavascriptCard() {
 function showHeadBodyLegsCard() {
       blankAll();
       document.getElementById("headBodyLegs").innerHTML = /*HTML*/
-            `<div class="innerCard images">
-                  <div>
-                        <button>◀</button>
-                        <img src="images/head1.png">
-                        <button>▶</button>
-                  </div>
-                  <div>
-                        <button>◀</button>
-                        <img src="images/body1.png">
-                        <button>▶</button>
-                  </div>
-                  <div>
-                        <button>◀</button>
-                        <img src="images/legs1.png">
-                        <button>▶</button>
-                  </div>
-            </div>`;
+            `<div id="head" class="bodyPart"></div>
+            <div id="body" class="bodyPart"></div>
+            <div id="legs" class="bodyPart"></div>`;
+
+      selectHead1();
+      selectBody1();
+      selectLegs1();
 }
+
+function selectHead1() {
+      document.getElementById('head').innerHTML = /*HTML*/`
+            <button onclick="selectHead4()">◀</button>
+            <img src="images/head1.png" />
+            <button onclick="selectHead2()">▶</button>
+      `;
+}
+
+function selectHead2() {
+      document.getElementById('head').innerHTML = /*HTML*/`
+            <button onclick="selectHead1()">◀</button>
+            <img src="images/head2.png" />
+            <button onclick="selectHead3()">▶</button>
+      `;
+}
+
+function selectHead3() {
+      document.getElementById('head').innerHTML = /*HTML*/`
+            <button onclick="selectHead2()">◀</button>
+            <img src="images/head3.png" />
+            <button onclick="selectHead4()">▶</button>
+      `;
+}
+
+function selectHead4() {
+      document.getElementById('head').innerHTML = /*HTML*/`
+            <button onclick="selectHead3()">◀</button>
+            <img src="images/head4.png" />
+            <button onclick="selectHead1()">▶</button>
+      `;
+}
+
+function selectBody1() {
+      document.getElementById('body').innerHTML = /*HTML*/`
+            <button onclick="selectBody4()">◀</button>
+            <img src="images/body1.png" />
+            <button onclick="selectBody2()">▶</button>
+      `;
+}
+
+function selectBody2() {
+      document.getElementById('body').innerHTML = /*HTML*/`
+            <button onclick="selectBody1()">◀</button>
+            <img src="images/body2.png" />
+            <button onclick="selectBody3()">▶</button>
+            `;
+      }
+
+function selectBody3() {
+      document.getElementById('body').innerHTML = /*HTML*/`
+            <button onclick="selectBody2()">◀</button>
+            <img src="images/body3.png" />
+            <button onclick="selectBody4()">▶</button>
+            `;
+}
+
+function selectBody4() {
+      document.getElementById('body').innerHTML = /*HTML*/`
+            <button onclick="selectBody3()">◀</button>
+            <img src="images/body4.png" />
+            <button onclick="selectBody1()">▶</button>
+            `;
+}
+
+function selectLegs1() {
+      document.getElementById('legs').innerHTML = /*HTML*/`
+            <button onclick="selectLegs4()">◀</button>
+            <img src="images/legs1.png" />
+            <button onclick="selectLegs2()">▶</button>
+            `;
+}
+
+function selectLegs2() {
+            document.getElementById('legs').innerHTML = /*HTML*/`
+            <button onclick="selectLegs1()">◀</button>
+            <img src="images/legs2.png" />
+            <button onclick="selectLegs3()">▶</button>
+            `;
+}
+
+function selectLegs3() {
+      document.getElementById('legs').innerHTML = /*HTML*/`
+      <button onclick="selectLegs2()">◀</button>
+      <img src="images/legs3.png" />
+      <button onclick="selectLegs4()">▶</button>
+      `;
+}
+
+function selectLegs4() {
+      document.getElementById('legs').innerHTML = /*HTML*/`
+            <button onclick="selectLegs3()">◀</button>
+            <img src="images/legs4.png" />
+            <button onclick="selectLegs1()">▶</button>
+            `;
+}
+
 
 function blankAll() {
       document.getElementById("tools").innerHTML = '';

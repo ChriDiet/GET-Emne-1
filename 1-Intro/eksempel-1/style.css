@@ -29,6 +29,8 @@ h1 {
 
 .innerCard {
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -64,3 +66,12 @@ h1 {
   text-align: center;
 }
 
+#head, #body, #legs{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  padding: 0px 10px;
+}
