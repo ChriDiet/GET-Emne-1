@@ -42,7 +42,7 @@ function showCssCard() {
       blankAll();
       document.getElementById("css").innerHTML = /*HTML*/
             `<div class="innerCard"> 
-                  Vi bruker CSS til å <i>style</i> et dokument, altså farger, fonter, utseende og lignende.
+                  Vi bruker CSS til å style et dokument, altså farger, fonter, utseende og lignende.
                   <ul>
                         <li><tt>background-color</tt></li>
                         <li><tt>color</tt></li>
@@ -190,3 +190,21 @@ function blankAll() {
 
 }
 
+function noLayout() {
+      document.getElementById('cards').classList.value = '';
+}
+
+function verticalLayout() {
+      noLayout();
+      document.getElementById('cards').classList.add('vertical');
+}
+
+function horizontalLayout() {
+      noLayout();
+      document.getElementById('cards').classList.add('horizontal');
+}
+
+function gridLayout() {
+      noLayout();
+      document.getElementById('cards').classList.add('grid');
+}
