@@ -1,0 +1,66 @@
+body {
+  display:flex;
+  flex-direction: column;
+}
+
+.buttons {
+  border-radius: 10px;
+  align-self: center;
+}
+
+button {
+  border-radius: 10px;
+  padding: 3px 10px;
+  background-color: rgb(90, 87, 87);
+  color: white;
+}
+h1 {
+  align-self: center;
+}
+
+.card {
+  border: 2px solid black;
+  margin: 15px;
+  border-radius: 15px;  
+  width: 500px;
+  align-self: center;
+  background-color: rgb(234, 234, 234);
+}
+
+.innerCard {
+  padding: 10px;
+}
+
+.header {
+  color: white;
+  border-radius: 13px 13px 0px 0px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 900;
+  font-family: Arial, Helvetica, sans-serif;
+  user-select: none
+}
+.green {
+  background-color: rgb(111, 146, 111);
+}
+
+.blue {
+  background-color: rgb(100, 125, 149);
+}
+
+.red {
+  background-color: rgb(202, 105, 105);
+}
+
+.yellow {
+  background-color: rgb(233, 206, 58);
+}
+
+.grey {
+  background-color: rgb(85, 83, 83);
+}
+
+.innerCard.images {
+  text-align: center;
+}
+
