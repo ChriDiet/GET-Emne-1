@@ -1,6 +1,7 @@
 
 
 function showToolCard() {
+      blankAll();
       document.getElementById("tools").innerHTML = /*HTML*/
             `<div class='innerCard'>
                   De to viktigste verktøyene vi skal bruke er disse:
@@ -21,6 +22,7 @@ function showToolCard() {
 }
 
 function showHtmlCard() {
+      blankAll();
       document.getElementById("html").innerHTML = /*HTML*/
             `<div class ="innerCard">
                   Vi bruker HTML til å definere et dokument.
@@ -37,6 +39,7 @@ function showHtmlCard() {
 }
 
 function showCssCard() {
+      blankAll();
       document.getElementById("css").innerHTML = /*HTML*/
             `<div class="innerCard"> 
                   Vi bruker CSS til å <i>style</i> et dokument, altså farger, fonter, utseende og lignende.
@@ -57,6 +60,7 @@ function showCssCard() {
 }
 
 function showJavascriptCard() {
+      blankAll();
       document.getElementById("javascript").innerHTML = /*HTML*/
             `<div class="innerCard"> 
                   Det viktigste vi skal lære er programmeringsspråket JavaScript. Vi skal lære grunnleggende programmering
@@ -69,6 +73,7 @@ function showJavascriptCard() {
 }
 
 function showHeadBodyLegsCard() {
+      blankAll();
       document.getElementById("headBodyLegs").innerHTML = /*HTML*/
             `<div class="innerCard images">
                   <div>
@@ -87,5 +92,14 @@ function showHeadBodyLegsCard() {
                         <button>▶</button>
                   </div>
             </div>`;
+}
+
+function blankAll() {
+      document.getElementById("tools").innerHTML = '';
+      document.getElementById("css").innerHTML = '';
+      document.getElementById("javascript").innerHTML = '';
+      document.getElementById("headBodyLegs").innerHTML = '';
+      document.getElementById("html").innerHTML = '';
+
 }
 
