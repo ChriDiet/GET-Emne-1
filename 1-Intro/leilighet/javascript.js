@@ -19,7 +19,15 @@ function outsideApartment() {
       <button onclick="enterKitchen()" id="kjøkken">Kjøkken</button>`;
       }
 
-
+      function enterKitchen() {
+         document.getElementById("apartment").classList.add("leilighet2");
+         document.getElementById("apartment").innerHTML = /*HTML*/
+         `<p id="info">Du er nå på kjøkkenet</p>
+         <div id="deg">✸</div>
+         <button onclick="enterHallway()" id="gang">Gang</button>
+         <button onclick="enterLivingroom()"id="stue">Stue</button>
+         <button id="kjøkken" style="border:none;">Kjøkken</button>`;
+         }
       outsideApartment();
 
 
