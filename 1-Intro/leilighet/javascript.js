@@ -1,5 +1,6 @@
 
 function outsideApartment() {
+   document.getElementById("apartment").classList.remove("leilighet2");
    document.getElementById("apartment").classList.add("utenfor");
    document.getElementById("apartment").innerHTML = /*HTML*/
       `<button onclick="enterHallway()" id="enter">Gå Inn</button>
