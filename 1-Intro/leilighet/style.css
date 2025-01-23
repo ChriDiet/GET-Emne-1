@@ -1,0 +1,39 @@
+body {
+   display: grid;
+   justify-content: center;
+}
+.leilighet {
+   display: grid;
+   text-align: center;
+   margin-top: 30px;
+   gap: 30px;
+   grid-template-columns: 60px 60px 60px 60px;
+   grid-template-rows: 30px 30px 30px;
+   grid-template-areas: "gang gang gang"
+                        "stue deg bad"
+                        "kjøkken kjøkken kjøkken"
+                        "info info info"
+}
+#gang {
+   grid-area: gang;
+   }
+   
+   #stue {
+   grid-area: stue;
+   }
+   
+   #bad {
+   grid-area: bad;
+   }
+   
+   #kjøkken {
+   grid-area: kjøkken;
+   }
+   
+   #deg {
+      grid-area: deg;
+   }
+   
+   #info {
+      grid-area: info;
+   }
