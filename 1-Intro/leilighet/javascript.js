@@ -2,10 +2,8 @@
 function outsideApartment() {
    document.getElementById("apartment").classList.add("utenfor");
    document.getElementById("apartment").innerHTML = /*HTML*/
-      `<div>
-      <button onclick="enterHallway()" id="enter">Gå Inn</button>
-      <p id="info">Du er utenfor en leilighet</p>
-   </div>`;
+      `<button onclick="enterHallway()" id="enter">Gå Inn</button>
+      <div id="deg">Du er utenfor en leilighet</div>`;
 }
 outsideApartment();
 
@@ -33,11 +31,19 @@ function enterLivingroom() {
    document.getElementById("apartment").classList.add("leilighet2");
    document.getElementById("apartment").innerHTML = /*HTML*/
       `<div id="deg">Du er nå i stua</div>
-      <button id="gang">Gang</button>
+      <button onclick="enterHallway()" id="gang">Gang</button>
       <button onclick="enterLivingroom()" style="border:none;" id="stue">Stue</button>
       <button onclick="enterKitchen()" id="kjøkken">Kjøkken</button>`;
 }
 
-enterLivingroom();
+function enterBathroom() {
+   document.getElementById("apartment").classList.add("leilighet2");
+   document.getElementById("apartment").innerHTML = /*HTML*/
+      `<div id="deg">Du er nå på badet</div>
+      <button onclick="enterHallway()" id="gang">Gang</button>
+      <button style="border:none;" id="bad">Bad</button>`;
+}
+
+outsideApartment();
 
 
