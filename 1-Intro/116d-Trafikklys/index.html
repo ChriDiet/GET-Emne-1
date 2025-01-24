@@ -1,17 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Trafikklys</title>
-   <link rel="stylesheet" href="style.css">
+   <style>
+      #trafficlight {
+         width: 6rem;
+         height: 20rem;
+         display: flex;
+         flex-direction: column;
+         background-color: black;
+         padding: 2rem;
+         gap: 2rem;
+         border-radius: 1rem;
+         margin: 40px;
+      }
+
+
+      .light {
+         background-color: rgb(187, 182, 182);
+         border-radius: 50%;
+         width: 6rem;
+         height: 6rem;
+      }
+   </style>
 </head>
+
 <body>
-   <div onclick="showRedYellow()"id="trafficlight">
-      <div class="light" id="redLight"></div>
-      <div class="light" id="yellowLight"></div>
-      <div class="light" id="greenLight"></div>
+   <div id="trafficlightContainer">
    </div>
-   <script src="javascript.js"></script>
+
+   <script>
+      function showRed() {
+         document.getElementById("trafficlightContainer").innerHTML = /*HTML*/
+            `<div onclick="showRedYellow()" id="trafficlight">
+               <div class="light" style="background-color: red;"></div>
+               <div class="light" id="yellowLight"></div>
+               <div class="light" id="greenLight"></div>
+            </div>`;
+      }
+
+      showRed();
+
+      function showRedYellow() {
+         document.getElementById("trafficlightContainer").innerHTML = /*HTML*/
+            `<div onclick="showGreen()" id="trafficlight">
+               <div class="light" style="background-color: red;"></div>
+               <div class="light" style="background-color: yellow;"></div>
+               <div class="light" id="greenLight"></div>
+            </div>`;
+      }
+
+      function showGreen() {
+         document.getElementById("trafficlightContainer").innerHTML = /*HTML*/
+            `<div onclick="showOnlyYellow()" id="trafficlight">
+               <div class="light"></div>
+               <div class="light"></div>
+               <div class="light" style="background-color: green;"></div>
+            </div>`;
+      }
+
+      function showOnlyYellow() {
+         document.getElementById("trafficlightContainer").innerHTML = /*HTML*/
+            `<div onclick="showRed()" id="trafficlight">
+               <div class="light"></div>
+               <div class="light" style="background-color: yellow;"></div>
+               <div class="light"></div>
+            </div>`;
+      }
+   </script>
 </body>
 </html>
