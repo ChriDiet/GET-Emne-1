@@ -1,0 +1,107 @@
+* {
+   font-family: roboto, Arial, Helvetica, sans-serif;
+}
+
+body {
+   display: grid;
+   justify-content: center;
+}
+
+button {
+   border: none;
+   border-radius: 11px;
+   width: 100px;
+   border: 2px solid black;
+   font-size: 18px;
+   background-color: white;
+}
+
+button:hover {
+   background-color: rgba(219, 173, 88, 0.838);
+}
+
+#utsiden {
+   grid-area: utsiden;
+   justify-self: center;
+   font-size: 14px;
+}
+
+button#utsiden {
+   padding: 5px 3px;
+}
+
+
+.leilighet2 {
+   display: grid;
+   margin-top: 30px;
+   gap: 30px;
+   grid-template-columns: 80px 180px 80px 80px;
+   grid-template-rows: 30px 30px 30px;
+   grid-template-areas: "gang gang gang"
+      "stue deg bad"
+      "kjøkken kjøkken kjøkken"
+      "info info info"
+      "utsiden utsiden utsiden"
+}
+.utenfor {
+   display: grid;
+   margin-top: 30px;
+   gap: 30px;
+   grid-template-columns: 80px 200px 80px 80px;
+   grid-template-rows: 30px 30px 30px;
+}
+
+#gang {
+   grid-area: gang;
+   justify-self: center;
+
+}
+
+#stue {
+   grid-area: stue;
+   justify-self: center;
+}
+
+#bad {
+   grid-area: bad;
+   justify-self: center;
+}
+
+#kjøkken {
+   grid-area: kjøkken;
+   justify-self: center;
+}
+
+#deg {
+   grid-area: deg;
+   justify-self: center;
+   align-self: center;
+   font-size: 18px;
+}
+
+#enter {
+   justify-self: center;
+   margin-bottom: 30px;
+
+}
+
+
+#stue:hover {
+   background-color: rgb(233, 214, 107);
+}
+
+#bad:hover {
+   background-color: rgb(85, 121, 134);
+}
+
+#kjøkken:hover {
+   background-color: rgb(204, 100, 100);
+}
+
+#gang:hover {
+   background-color: rgb(107, 160, 123);
+}
+
+#utsiden:hover {
+   background-color: rgb(170, 164, 164)
+}

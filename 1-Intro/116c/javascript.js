@@ -1,15 +1,16 @@
-
 function outsideApartment() {
-   document.getElementById("apartment").classList.remove("leilighet2");
+   document.getElementById("apartment").classList.add("leilighet2");
    document.getElementById("apartment").classList.add("utenfor");
+   document.body.style.backgroundColor = "rgb(158, 158, 158)";
    document.getElementById("apartment").innerHTML = /*HTML*/
-      `<button onclick="enterHallway()" id="enter">Gå Inn</button>
-      <div id="deg">Du er utenfor en leilighet</div>`;
+      `<div id="deg">Du er utenfor en leilighet</div>
+      <button onclick="enterHallway()" id="gang">Gå inn</button>`;
 }
-outsideApartment();
 
 function enterHallway() {
+   document.getElementById("apartment").classList.remove("utenfor");
    document.getElementById("apartment").classList.add("leilighet2");
+   document.body.style.backgroundColor = "rgb(107, 160, 123)";
    document.getElementById("apartment").innerHTML = /*HTML*/
       `<div id="deg">Du er nå i gangen</div>
       <button id="gang" style="border:none;">Gang</button>
@@ -21,6 +22,7 @@ function enterHallway() {
 
 function enterKitchen() {
    document.getElementById("apartment").classList.add("leilighet2");
+   document.body.style.backgroundColor = "rgb(204, 100, 100)";
    document.getElementById("apartment").innerHTML = /*HTML*/
       `<div id="deg">Du er nå på kjøkkenet</div>
          <button onclick="enterHallway()" id="gang">Gang</button>
@@ -30,6 +32,7 @@ function enterKitchen() {
 
 function enterLivingroom() {
    document.getElementById("apartment").classList.add("leilighet2");
+   document.body.style.backgroundColor = "rgb(233, 214, 107)";
    document.getElementById("apartment").innerHTML = /*HTML*/
       `<div id="deg">Du er nå i stua</div>
       <button onclick="enterHallway()" id="gang">Gang</button>
@@ -38,6 +41,7 @@ function enterLivingroom() {
 }
 
 function enterBathroom() {
+   document.body.style.backgroundColor = "rgb(85, 121, 134)";
    document.getElementById("apartment").classList.add("leilighet2");
    document.getElementById("apartment").innerHTML = /*HTML*/
       `<div id="deg">Du er nå på badet</div>
@@ -45,6 +49,6 @@ function enterBathroom() {
       <button style="border:none;" id="bad">Bad</button>`;
 }
 
-outsideApartment();
+enterHallway();
 
 
