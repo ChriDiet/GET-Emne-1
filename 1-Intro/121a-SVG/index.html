@@ -11,16 +11,20 @@
 </head>
 
 <body>
-   <button onclick="addCircle(30)">Legg til sirkel 30</button>
-   <button onclick="addCircle(70)">Legg til sirkel 70</button>
+   <input id="myInput" type="number"/>
+   <button onclick="addCircleFromInput()">Submit</button>
    <br />
    <svg id="mySvg" width="500" height="500" style="background-color: lightgray;">
    </svg>
    <script>
+      function addCircleFromInput() {
+         const userInput = document.getElementById("myInput").value;
+         addCircle(userInput);
+      }
+      
       function addCircle(x) {
          document.getElementById('mySvg').innerHTML = /*HTML*/`
-            <circle cx=${x} cy="100" r="40" stroke="green" stroke-width="4" fill="yellow" />            
-      `;
+            <circle cx=${x} cy="100" r="40" stroke="green" stroke-width="4" fill="yellow"/>`;
       }
    </script>
    <script>
