@@ -11,14 +11,24 @@
 </head>
 
 <body>
-   <div class="input">
+   <div>
    <input id="inputX" type="number" style=margin-bottom:5px; placeholder="Enter a number for 'x'" />
    <input id="inputY" type="number" style=margin-bottom:5px; placeholder="Enter a number for 'y'" />
-   <button onclick="addCircleFromInput()">Submit</button>
+   <input id="inputBgColor" type="text" style=margin-bottom:5px; placeholder="Enter a color" />
+   <button onclick= "addCircleFromInput(), getBgColorInput()">Submit</button>
    </div>
    <svg id="mySvg" width="366" height="300" style="background-color: rgb(169, 133, 133); border-radius: 10px">
    </svg>
    <script>
+      function getBgColorInput() {
+         const bgColorInput = document.getElementById("inputBgColor").value;
+         changeBgColor(bgColorInput);
+      }
+
+      function changeBgColor(chosenColor) {
+      document.getElementById("mySvg").style.backgroundColor= `${chosenColor}`;
+      }
+
       function addCircleFromInput() {
          const userInputX = document.getElementById("inputX").value;
          const userInputY = document.getElementById("inputY").value;
