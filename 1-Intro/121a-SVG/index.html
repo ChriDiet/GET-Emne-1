@@ -11,20 +11,23 @@
 </head>
 
 <body>
-   <input id="myInput" type="number"/>
+   <div class="input">
+   <input id="inputX" type="number" style=margin-bottom:5px; placeholder="Enter a number for 'x'" />
+   <input id="inputY" type="number" style=margin-bottom:5px; placeholder="Enter a number for 'y'" />
    <button onclick="addCircleFromInput()">Submit</button>
-   <br />
-   <svg id="mySvg" width="500" height="500" style="background-color: lightgray;">
+   </div>
+   <svg id="mySvg" width="366" height="300" style="background-color: rgb(169, 133, 133); border-radius: 10px">
    </svg>
    <script>
       function addCircleFromInput() {
-         const userInput = document.getElementById("myInput").value;
-         addCircle(userInput);
+         const userInputX = document.getElementById("inputX").value;
+         const userInputY = document.getElementById("inputY").value;
+         addCircle(userInputX, userInputY);
       }
       
-      function addCircle(x) {
+      function addCircle(x,y) {
          document.getElementById('mySvg').innerHTML = /*HTML*/`
-            <circle cx=${x} cy="100" r="40" stroke="green" stroke-width="4" fill="yellow"/>`;
+            <circle cx=${x} cy=${y} r="40" stroke="rgb(62, 62, 62)" stroke-width="4" fill="rgb(236, 236, 236)"/>`;
       }
    </script>
    <script>
