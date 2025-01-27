@@ -4,24 +4,53 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <title>Oppgave 121 A</title>
    <style>
+      input, select {
+         border-radius: 6px;
+         width: 150px;
+         text-align: center;
+         border: 2px solid black;
+      }
 
+      button {
+      margin-left:10px;
+      border-radius: 7px;
+      border: none;
+      width: 70px;
+      padding: 3px 0px;
+      background-color: rgb(191, 191, 191);
+      }
    </style>
 </head>
 
 <body>
    <div>
-   <input id="inputX" type="number" style=margin-bottom:5px; placeholder="Enter a number for 'x'" />
-   <input id="inputY" type="number" style=margin-bottom:5px; placeholder="Enter a number for 'y'" />
-   <input id="inputBgColor" type="text" style=margin-bottom:5px; placeholder="Enter a color" />
-   <button onclick= "addCircleFromInput(), getBgColorInput()">Submit</button>
+      <input id="inputX" type="number" style=margin-bottom:15px; placeholder="Enter a number for 'x'" />
+      <input id="inputY" type="number" style=margin-bottom:15px; placeholder="Enter a number for 'y'" />
+   </div>
+   <div> 
+      <label for="bgColor">Choose a color:</label>
+      <select name="bgColor" id="bgColor" style=margin-bottom:10px;>
+         <option value="tomato">Tomato</option>
+         <option value="beige">Beige</option>
+         <option value="cadetBlue"> Cadet Blue</option>
+         <option value="darkOliveGreen">Olive Green</option>
+         <option value="darkSeaGreen">Sea Green</option>
+         <option value="salmon">Salmon</option>
+         <option value="teal">Teal</option>
+         <option value="peru">Peru</option>
+         <option value="lightSlateGrey">Slate Grey</option>
+         <option value="lightPink">Light Pink</option>
+         <option value="lavenderBlush">Blush</option>
+      </select>
+      <button onclick= "addCircleFromInput(), getBgColorInput()">Submit</button>
    </div>
    <svg id="mySvg" width="366" height="300" style="background-color: rgb(169, 133, 133); border-radius: 10px">
    </svg>
    <script>
       function getBgColorInput() {
-         const bgColorInput = document.getElementById("inputBgColor").value;
+         const bgColorInput = document.getElementById("bgColor").value;
          changeBgColor(bgColorInput);
       }
 
