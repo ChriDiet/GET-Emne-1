@@ -13,11 +13,20 @@
          border: 2px solid black;
       }
 
+      .button {
+         display:grid;
+         margin-top: 10px;
+         grid-template-columns: 90px 90px;
+         gap: 30px;
+         width: 346px;
+         justify-content: end;
+      }
+
       button {
       margin-left:10px;
       border-radius: 7px;
       border: none;
-      width: 70px;
+      width: 100px;
       padding: 3px 0px;
       background-color: rgb(191, 191, 191);
       }
@@ -30,47 +39,76 @@
       <input id="inputY" type="number" style=margin-bottom:15px; placeholder="Enter a number for 'y'" />
    </div>
    <div> 
-      <label for="bgColor">Choose a color:</label>
-      <select name="bgColor" id="bgColor" style=margin-bottom:10px;>
-         <option value="tomato">Tomato</option>
-         <option value="beige">Beige</option>
-         <option value="cadetBlue"> Cadet Blue</option>
-         <option value="darkOliveGreen">Olive Green</option>
-         <option value="darkSeaGreen">Sea Green</option>
-         <option value="salmon">Salmon</option>
-         <option value="teal">Teal</option>
-         <option value="peru">Peru</option>
-         <option value="lightSlateGrey">Slate Grey</option>
-         <option value="lightPink">Light Pink</option>
-         <option value="lavenderBlush">Blush</option>
-      </select>
-      <button onclick= "addCircleFromInput(), getBgColorInput()">Submit</button>
+      <label for="bgColor">Choose a background color:</label>
+         <select name="bgColor" id="bgColor" style=margin-bottom:10px;>
+            <option value="tomato">Tomato</option>
+            <option value="beige">Beige</option>
+            <option value="cadetBlue"> Cadet Blue</option>
+            <option value="darkOliveGreen">Olive Green</option>
+            <option value="darkSeaGreen">Sea Green</option>
+            <option value="salmon">Salmon</option>
+            <option value="teal">Teal</option>
+            <option value="peru">Peru</option>
+            <option value="lightSlateGrey">Slate Grey</option>
+            <option value="lightPink">Light Pink</option>
+            <option value="lavenderBlush">Blush</option>
+         </select>
    </div>
-   <svg id="mySvg" width="366" height="300" style="background-color: rgb(169, 133, 133); border-radius: 10px">
-   </svg>
+   <div>
+      <label for="circleColor">Choose a color for the shape:</label>
+         <select name="circleColor" id="circleColor" style=margin-bottom:10px;>
+            <option value="tomato">Tomato</option>
+            <option value="beige">Beige</option>
+            <option value="cadetBlue"> Cadet Blue</option>
+            <option value="darkOliveGreen">Olive Green</option>
+            <option value="darkSeaGreen">Sea Green</option>
+            <option value="salmon">Salmon</option>
+            <option value="teal">Teal</option>
+            <option value="peru">Peru</option>
+            <option value="lightSlateGrey">Slate Grey</option>
+            <option value="lightPink">Light Pink</option>
+            <option value="lavenderBlush">Blush</option>
+         </select>
+   </div>
+   <svg id="mySvg" width="366" height="300" style="background-color: rgb(169, 133, 133); border-radius: 10px"></svg>
+   <div class="button">
+      <div><button onclick= "addCircleFromInput(), getBgColorInput()">Make circle</button></div>
+      <div><button onclick= "addRectangleFromInput(), getBgColorInput()">Make rectangle</button></div>
+   </div>
+
    <script>
       function getBgColorInput() {
-         const bgColorInput = document.getElementById("bgColor").value;
+         let bgColorInput = document.getElementById("bgColor").value;
          changeBgColor(bgColorInput);
       }
 
-      function changeBgColor(chosenColor) {
-      document.getElementById("mySvg").style.backgroundColor= `${chosenColor}`;
+      function changeBgColor(chosenBgColor) {
+      document.getElementById("mySvg").style.backgroundColor= `${chosenBgColor}`;
       }
 
       function addCircleFromInput() {
-         const userInputX = document.getElementById("inputX").value;
-         const userInputY = document.getElementById("inputY").value;
-         addCircle(userInputX, userInputY);
+         let userInputX = document.getElementById("inputX").value;
+         let userInputY = document.getElementById("inputY").value;
+         let circleColorInput = document.getElementById("circleColor").value;
+         addCircle(userInputX, userInputY, circleColorInput);
+      }
+
+      function addRectangleFromInput() {
+         let userInputX = document.getElementById("inputX").value;
+         let userInputY = document.getElementById("inputY").value;
+         let circleColorInput = document.getElementById("circleColor").value;
+         addRectangle(userInputX, userInputY, circleColorInput);
       }
       
-      function addCircle(x,y) {
-         document.getElementById('mySvg').innerHTML = /*HTML*/`
-            <circle cx=${x} cy=${y} r="40" stroke="rgb(62, 62, 62)" stroke-width="4" fill="rgb(236, 236, 236)"/>`;
+      function addCircle(x,y, chosenCircleColor) {
+         document.getElementById('mySvg').innerHTML = /*HTML*/
+         `<circle cx=${x} cy=${y} r="40" stroke="rgb(62, 62, 62)" stroke-width="4" fill= "${chosenCircleColor}"/>`;
       }
-   </script>
-   <script>
 
+      function addRectangle(x,y, chosenRectangleColor) {
+         document.getElementById('mySvg').innerHTML = /*HTML*/
+         `<rect x=${x} y=${y} width="50" height="60" stroke="rgb(62, 62, 62)" stroke-width="4" fill= "${chosenRectangleColor}"/>`;
+      }
    </script>
 </body>
 
