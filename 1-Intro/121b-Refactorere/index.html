@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Refactorering</title>
+   <style>
+      table {
+         border-collapse: collapse;
+      }
+
+      td,
+      th {
+         border: 1px solid #ddd;
+         padding: 8px;
+      }
+
+      tr:nth-child(even) {
+         background-color: #f2f2f2;
+      }
+
+      th {
+         background-color: #04AA6D;
+         color: white;
+      }
+   </style>
+</head>
+
+<body>
+   <table id="myTable">
+   </table>
+   
+   <script>
+      function addRow() {
+         document.getElementById("myTable").innerHTML += /*HTML*/
+         `<tr id="header"></tr>
+         <tr id="row1"></tr>
+         <tr id="row2"></tr>
+         <tr id="row3"></tr>
+
+            `;
+      }
+
+      function addHeader() {
+         document.getElementById("header").innerHTML += /*HTML*/
+            `<th>Dag</th>`;
+      }
+
+      function addRow1() {
+         document.getElementById("row1").innerHTML += /*HTML*/
+         `<td>Dag</td>`;
+      }
+
+      function addRow2() {
+         document.getElementById("row2").innerHTML += /*HTML*/
+         `<td>Dag</td>`;
+      }
+
+      function addRow3() {
+         document.getElementById("row3").innerHTML += /*HTML*/
+         `<td>Dag</td>`;
+      }
+      
+      addRow();
+      addRow();
+      addRow();
+      addRow();
+      addHeader();
+      addHeader();
+      addHeader();
+      addHeader();
+      addRow1();
+      addRow1();
+      addRow1();
+      addRow1();
+      addRow2();
+      addRow2();
+      addRow2();
+      addRow2();
+      addRow3();
+      addRow3();
+      addRow3();
+      addRow3();
+      
+   
+      
+      
+   </script>
+</body>
+
+</html>
