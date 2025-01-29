@@ -7,23 +7,27 @@
    <title>Refactorering</title>
    <style>
       table {
-         border-collapse: collapse;
+         text-align: center;
+         width:500px;
+         height: 300px;
+         font-size: 25px;
+         border-collapse: collapse
       }
-
       td,
       th {
          border: 1px solid #ddd;
-         padding: 8px;
+         padding: 14px; 
       }
 
-      tr:nth-child(even) {
-         background-color: #f2f2f2;
+      #row1, #row3 {
+         background-color: #f3f1f1;
       }
 
       th {
-         background-color: #04AA6D;
+         background-color: #5cb293;
          color: white;
       }
+
    </style>
 </head>
 
@@ -32,59 +36,20 @@
    </table>
    
    <script>
-      function addRow() {
+      function addRow(type,text1, text2, text3, text4) {
          document.getElementById("myTable").innerHTML += /*HTML*/
-         `<tr id="header"></tr>
-         <tr id="row1"></tr>
-         <tr id="row2"></tr>
-         <tr id="row3"></tr>
-
-            `;
+         `<tr>
+            <${type}>${text1}</${type}>
+            <${type}>${text2}</${type}>
+            <${type}>${text3}</${type}>
+            <${type}>${text4}</${type}>
+            </tr>`;
       }
 
-      function addHeader() {
-         document.getElementById("header").innerHTML += /*HTML*/
-            `<th>Dag</th>`;
-      }
-
-      function addRow1() {
-         document.getElementById("row1").innerHTML += /*HTML*/
-         `<td>Dag</td>`;
-      }
-
-      function addRow2() {
-         document.getElementById("row2").innerHTML += /*HTML*/
-         `<td>Dag</td>`;
-      }
-
-      function addRow3() {
-         document.getElementById("row3").innerHTML += /*HTML*/
-         `<td>Dag</td>`;
-      }
-      
-      addRow();
-      addRow();
-      addRow();
-      addRow();
-      addHeader();
-      addHeader();
-      addHeader();
-      addHeader();
-      addRow1();
-      addRow1();
-      addRow1();
-      addRow1();
-      addRow2();
-      addRow2();
-      addRow2();
-      addRow2();
-      addRow3();
-      addRow3();
-      addRow3();
-      addRow3();
-      
-   
-      
+      addRow("th","Dag","Time", "Minutt", "Temperatur");
+      addRow("td","1","10", "0", "5");
+      addRow("td","1","10", "15", "6");
+      addRow("td","1","10", "30", "7");
       
    </script>
 </body>
