@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Codealong</title>
+
+   <style>
+      #boks1, #boks2, #boks3 {
+         border: 1px solid grey;
+         width: 100px;
+         height: 100px;   
+         border-radius: 5px;
+         margin: 10px;
+      }
+   </style>
+</head>
+<body>
+   <div onclick="revealBox('boks1', 'riktig')"id="boks1"></div>
+   <div onclick="revealBox('boks2', 'feil')"id="boks2"></div>
+   <div onclick="revealBox('boks3', 'feil')"id="boks3"></div>
+
+   <script>
+      function revealBox(id,text) {
+         document.getElementById(id).innerHTML = /*HTML*/
+            `<p>Du fant ${text}</p>`;
+      }
+
+   </script>
+</body>
+</html>
