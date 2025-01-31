@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Flytte Ruter1</title>
+
+   <style>
+      #board {
+         display: grid;
+         grid-template-columns: repeat(8, 70px);
+         grid-template-rows: repeat(8, 70px);
+      }
+
+      #board div{
+         border: 1px solid rgb(72, 72, 72);
+      }
+
+      .selected {
+         background-color: rgb(255, 216, 90);
+      }
+
+      .up {
+         grid-area: up;
+      }
+
+      .rightArrow {
+         grid-area: rightArrow;
+      }
+
+      .down {
+         grid-area: down;
+      }
+
+      .leftArrow {
+         grid-area: leftArrow;
+      }
+
+      button {
+         width: 50px;
+         height:20px;
+         justify-self: center;
+      }
+
+      .buttons {
+         margin-top: 10px;
+         width: 600px;
+         display: grid;
+         grid-template-columns: 40px 40px 40px;
+         grid-template-rows: 30px 30px 30px;
+         grid-template-areas: "up up up"
+                              "leftArrow . rightArrow"
+                              "down down down";
+         justify-content: center;
+      }
+      
+   </style>
+</head>
+
+<body>
+   <div id="board"></div>
+      <div class="buttons">
+      <button class="up" onclick="moveSquare(selectedSquareIndex-=8)">Up</button>
+      <button class="down" onclick="moveSquare(selectedSquareIndex+=8)">Down</button>
+      <button class="rightArrow" onclick="moveSquare(selectedSquareIndex++)">Right</button>
+      <button class ="leftArrow" onclick="moveSquare(selectedSquareIndex--)">Left</button>
+      </div>
+   <script>
+      
+      const size = 64;
+      let selectedSquareIndex = 0;
+
+      function moveSquare(direction) {
+         let moveSquare = direction;
+         showBoard();
+      }
+
+      showBoard()
+      function showBoard() {
+         const lengthPart1 = selectedSquareIndex;
+         const pattern = '<div></div>';
+         const part1 = ''.padEnd(pattern.length * lengthPart1, pattern)
+         document.getElementById('board').innerHTML = part1;
+
+         const part2 = '<div class="selected"></div>';
+         document.getElementById('board').innerHTML += part2;
+
+         const lengthPart3 = size - (selectedSquareIndex + 1);
+         const part3 = ''.padEnd(pattern.length * lengthPart3, pattern)
+         document.getElementById('board').innerHTML += part3;
+      }
+
+
+   </script>
+</body>
+
+</html>
