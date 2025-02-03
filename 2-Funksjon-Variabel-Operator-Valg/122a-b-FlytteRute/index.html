@@ -69,28 +69,35 @@
    <script>
       
       const size = 64;
-      let selectedSquareIndex = 0;
+      let selectedSquareIndex = 9;
 
       function moveSquare(direction) {
-         let moveSquare = direction;
+         let selectedSquareIndex = direction;
          showBoard();
       }
 
+      function addDiv (antallDiv) {
+         const pattern = '<div></div>';
+         const part = ''.padEnd(pattern.length * antallDiv, pattern)
+         document.getElementById('board').innerHTML += part;
+
+      }
       showBoard()
       function showBoard() {
-         const lengthPart1 = selectedSquareIndex;
          const pattern = '<div></div>';
-         const part1 = ''.padEnd(pattern.length * lengthPart1, pattern)
-         document.getElementById('board').innerHTML = part1;
+         const lengthPart1 = selectedSquareIndex;
+         const lengthPart3 = size - (selectedSquareIndex + 1);
+         
+         
+         addDiv(lengthPart1);
 
          const part2 = '<div class="selected"></div>';
          document.getElementById('board').innerHTML += part2;
 
-         const lengthPart3 = size - (selectedSquareIndex + 1);
-         const part3 = ''.padEnd(pattern.length * lengthPart3, pattern)
-         document.getElementById('board').innerHTML += part3;
-      }
 
+         addDiv(lengthPart3);
+      }
+      
 
    </script>
 </body>
