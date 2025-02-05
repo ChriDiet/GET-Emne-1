@@ -10,12 +10,25 @@
       #myText {
          margin: 10px;
       }
+
+      #colorValueButtons {
+         display: grid;
+         grid-template-columns: repeat(3,50px);
+      }
+      #colors {
+         margin: 10px;
+         display: grid;
+         grid-template-columns: 30px;
+         grid-template-rows: 30px 30px 30px;
+         align-items: center;
+      }
+
    </style>
 </head>
 
 <body>
    <div id="myText">Kort tekst her</div>
-   <label for ="textFont">Velg font:</label>
+   <label for="textFont">Velg font:</label>
    <select onchange="changeFont()" name="textFont" id="textFont">
       <option value="helvetica">Helvetica</option>
       <option value="timesNewRoman">Times New Roman</option>
@@ -23,34 +36,56 @@
       <option value="verdana">Verdana</option>
       <option value="tahoma">Tahoma</option>
    </select>
-   
+
    <button onclick="getSize(skriftStørrelse++)">Større tekst</button>
    <button onclick="getSize(skriftStørrelse--)">Større tekst</button>
+   <div id="colorValueButtons"></div>
+   
 
    <script>
+      let skriftStørrelse = 25;
+      let redValue = 125;
+         let blueValue = 125;
+         let greenValue = 125;
+      
+      
+      changeSkriftStørrelse();
 
-         let skriftStørrelse = 25;
-
-         function changeFont() {
-         let chosenFont = document.getElementById("textFont").value;
-         document.getElementById("myText").style.fontFamily = `${chosenFont}`;
-
+      function getSize(størrelse) {
+         let skriftStørrelse = størrelse;
+         changeSkriftStørrelse();
       }
 
-         function getSize(størrelse) {
-            let skriftStørrelse = størrelse;
-            changeSkriftStørrelse();
-         }
 
+      function changeSkriftStørrelse() {
+         const currentFontSize = skriftStørrelse;
+         document.getElementById('myText').style.fontSize = `${currentFontSize}px`;
+      }
 
-         function changeSkriftStørrelse() {
-            const currentFontSize = skriftStørrelse;
+      function changeFont() {
+         let chosenFont = document.getElementById("textFont").value;
+         document.getElementById("myText").style.fontFamily = `${chosenFont}`;
+      }
+      
+      addColorValueButtons('Green',greenValue)
+      addColorValueButtons('Rød',redValue)
+      addColorValueButtons('Blå',blueValue)
 
-            document.getElementById('myText').style.fontSize = `${currentFontSize}px`;
-         }
+      function addColorValueButtons (color, nameOnValue) {
+         document.getElementById("colorValueButtons").innerHTML += /*HTML*/ 
+            `<div id="colors">
+               <button id="valueUp" onclick='getColorValue(${nameOnValue})'>+5</button>
+               <div id="Grønn">${nameOnValue}</div>
+               <button id="valueDown" onclick='getColorValue(${color},${nameOnValue})'>-5</button>
+               <div>${color}</div>
+            </div>`;
+}
 
-         changeSkriftStørrelse();
-
-   </script>
+      function getColorValue (nameOnValue) {
+         nameOnValue = nameOnValue+=5
+         document.getElementById('Grønn').innerHTML = nameOnValue;
+            }
+</script>
 </body>
+
 </html>
