@@ -67,23 +67,25 @@
          document.getElementById("myText").style.fontFamily = `${chosenFont}`;
       }
       
-      addColorValueButtons('Green',greenValue)
-      addColorValueButtons('Rød',redValue)
-      addColorValueButtons('Blå',blueValue)
+      addColorValueButtons('Grønn','greenValue',greenValue)
+      addColorValueButtons('Rød','redValue',redValue)
+      addColorValueButtons('Blå','blueValue',blueValue)
 
-      function addColorValueButtons (color, nameOnValue) {
+      function addColorValueButtons (color, nameOnValue, variable) {
          document.getElementById("colorValueButtons").innerHTML += /*HTML*/ 
             `<div id="colors">
-               <button id="valueUp" onclick='getColorValue(${nameOnValue})'>+5</button>
-               <div id="Grønn">${nameOnValue}</div>
-               <button id="valueDown" onclick='getColorValue(${color},${nameOnValue})'>-5</button>
+               <button id="valueUp" onclick='getColorValue(${nameOnValue}+=5,"${color}")'>+5</button>
+               <div id=${color}>${variable}</div>
+               <button id="valueDown" onclick='getColorValue(${nameOnValue}-=5,"${color}")'>-5</button>
                <div>${color}</div>
             </div>`;
 }
 
-      function getColorValue (nameOnValue) {
-         nameOnValue = nameOnValue+=5
-         document.getElementById('Grønn').innerHTML = nameOnValue;
+      function getColorValue (nameOnValues,color) {
+         console.log(color)
+         let value = nameOnValues;
+         document.getElementById(color).innerHTML = value;
+         document.body.style.backgroundColor = `rgb(${redValue},${greenValue},${blueValue})`;
             }
 </script>
 </body>
