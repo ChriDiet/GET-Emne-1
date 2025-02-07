@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .trafficLight {
+         width: 6rem;
+         height: 20rem;
+         display: flex;
+         flex-direction: column;
+         background-color: black;
+         padding: 2rem;
+         gap: 2rem;
+         border-radius: 1rem;
+         margin: 40px;
+      }
+
+      .light {
+         background-color: rgb(187, 182, 182);
+         border-radius: 50%;
+         width: 6rem;
+         height: 6rem;
+      }  
+      body {
+      display:flex;
+      flex-direction: column;
+      
+      }
+
+      button {
+         width: 150px;
+         margin-left: 44px;
+         font-size: 30px;
+         border-radius: 20px;
+         background-color: rgb(98, 98, 98);
+         border:none;
+         padding: 3px;
+         color:white;
+         
+      }
+   </style>
+</head>
+
+<body onload="drawTrafficLight(true,false,false)">
+   <div id="app"></div>
+   <button onclick="goToNextPhase()">Next</button>
+
+   <script>
+      
+      //Model
+      let phase = 0;
+   
+      
+      //View
+      function updateView(color1,color2,color3) {
+         document.getElementById('app').innerHTML = /*HTML*/
+            `<div class="trafficLight">
+            <div class="light" style="background-color:${color1}";></div>   
+            <div class="light" style="background-color:${color2}";></div>   
+            <div class="light" style="background-color:${color3}";></div>  
+            </div>`;
+      }
+
+      //Controller
+      function drawTrafficLight(isRed,isYellow,isGreen) {
+         let color1 = 'grey';
+         let color2 = 'grey';
+         let color3 = 'grey';
+         if (isRed) color1 = 'red';
+         if (isYellow) color2 = 'yellow';
+         if (isGreen) color3 = 'green';
+
+         updateView(color1,color2,color3)
+      }
+
+      function goToNextPhase() {
+         if (phase == 0) {
+            drawTrafficLight(true,true,false);
+            phase++;
+         }else if (phase == 1) {
+            drawTrafficLight(false,false,true);
+            phase++;
+         } else if(phase==2) {
+            drawTrafficLight(false,true,false);
+            phase++;
+      } else {
+         drawTrafficLight(true,false,false);
+         phase = 0;
+      }
+   }
+   </script>
+
+</body>
+
+</html>
