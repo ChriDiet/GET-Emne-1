@@ -16,6 +16,7 @@
             createNumberSelector(13, 1, 31, "Day")
             + createNumberSelector(8, 1, 12, "Month")
             + createNumberSelector(2023, 2020, 2025, "Year")
+            createDate()
          }
          
    
@@ -39,8 +40,7 @@
          document.getElementById('app').innerHTML +=
          `<p style="font-size:20px">You chose the date ${chosenDay}.${chosenMonth}.${chosenYear}</p>`;
       }
-      
-      createDate()
+
    </script>
 </body>
 
