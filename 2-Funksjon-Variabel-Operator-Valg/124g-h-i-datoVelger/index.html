@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
 </head>
+
 <body>
    <div id='app'></div>
+
+   <script> 
+      function showDateSelector() {
+         document.getElementById('app').innerHTML =
+            createNumberSelector(13, 1, 31, "Day")
+            + createNumberSelector(8, 1, 12, "Month")
+            + createNumberSelector(2023, 2020, 2025, "Year")
+         }
+         
    
-   <script>
-      function createNumberSelector(numberShown,minimum,maximum,type) {
+      showDateSelector()
+
+      function createNumberSelector(numberShown, minimum, maximum, type) {
          return /*HTML*/`
          <div id="${type}Main" style="display: flex;align-items: center;">
             <div id="${type}" style="font-size: 300%;">${numberShown}</div>
             <div style="display: flex; flex-direction: column;align-items: flex-start;">
                <button onclick="select${type}(${maximum})">▲</button>
-               <button onclick="select${type}(${minimum})" disabled>▼</button>
-            </div>
+               <button onclick="select${type}(${minimum})">▼</button>           
+               </div>
          </div>
          `;
-         console.log(type)
       }
-
-      document.getElementById('app').innerHTML = createNumberSelector(2,30,1,'day');
-
-
+      function createDate () {
+         let chosenDay = document.getElementById('Day').innerHTML;
+         let chosenMonth = document.getElementById('Month').innerHTML;
+         let chosenYear = document.getElementById('Year').innerHTML;
+         document.getElementById('app').innerHTML +=
+         `<p style="font-size:20px">You chose the date ${chosenDay}.${chosenMonth}.${chosenYear}</p>`;
+      }
+      
+      createDate()
    </script>
 </body>
+
 </html>
-
-
