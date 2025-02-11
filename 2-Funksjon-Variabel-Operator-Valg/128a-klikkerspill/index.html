@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Klikkerspill</title>
+
+   <style>
+      body {
+         font-size: 30px;
+      }
+
+      #points {
+         grid-area: points;
+         align-self: center;
+         justify-self: center;
+         font-size: 50px;
+      }
+
+      #clicker {
+         grid-area: clicker;
+         background-color: rgb(226, 191, 51);
+      }
+
+      #upgrade {
+         grid-area: upgrade;
+      }
+
+      button {
+         width: 100px;
+         height: 40px;
+         border: 2px solid rgba(0, 0, 0, 0.8);
+         border-radius: 10px;
+      }
+
+      #app {
+         display: grid;
+         grid-template-columns: repeat(2, 190px);
+         grid-template-rows: repeat(2, 50px);
+         grid-template-areas: 'points clicker'
+            'points upgrade';
+         background-color: rgb(186, 202, 212);
+         width: 300px;
+         padding: 10px;
+         border-radius: 10px;
+         border: 4px solid rgba(0, 0, 0, 0.8);
+
+      }
+
+      :disabled {
+         background-color: rgba(226, 191, 51, 0.489);
+      }
+   </style>
+</head>
+
+<body onload="updateView()">
+   <div id="app"></div>
+
+   <script>
+
+      //Model
+      let pointsPerClick = +1;
+      let upgradeCost = 10;
+      let points = 0;
+
+
+      //View
+      function updateView() {
+         document.getElementById('app').innerHTML =
+            createPointTrackerHtml(points)
+            + createButtonHtml('clicker')
+            + createButtonHtml('upgrade');
+            + disableButton()
+
+      }
+
+
+
+
+      //Controller
+      function createButtonHtml(buttonId) {
+         let functionName;
+         let buttonText;
+
+         if (buttonId == 'clicker') {
+            buttonText = `+${pointsPerClick}`;
+         } else {
+            buttonText = `<strong>Upgrade x2</strong> Cost ${upgradeCost}`;
+         }
+
+         return /*HTML*/ `
+         <button id=${buttonId} onclick="buttonClicked('${buttonId}')">${buttonText}</button>
+         `;
+      }
+
+      function createPointTrackerHtml(points) {
+         return /*HTML*/ `
+      <div id="points">${points}</div>
+      `;
+      }
+
+      function buttonClicked (buttonId) {
+         if (buttonId == 'clicker') {
+            points += pointsPerClick;
+            updateView();}
+
+         if (buttonId == 'upgrade') {
+            points = points - upgradeCost; 
+            pointsPerClick += 1;
+            upgradeCost = upgradeCost += (pointsPerClick * 8);
+            updateView()
+         }
+      }
+   function disableButton() {
+      let upgradeButton = document.getElementById('upgrade');
+      upgradeButton.setAttribute('disabled','')
+
+      if (points > upgradeCost-1) {
+         upgradeButton.removeAttribute('disabled','')
+         upgradeButton.style.backgroundColor='rgb(226, 191, 51)';
+   }
+}
+
+   </script>
+</body>
+
+</html>
