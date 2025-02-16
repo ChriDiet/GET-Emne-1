@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Guess the number</title>
+</head>
+<body onload="updateView()">
+   <div id="app"></div>
+
+   <script>
+      let secretNumber = Math.floor(Math.random() * 100+1)
+      let displayText = "";
+      let guesses = 0;
+      
+      function updateView() {
+         document.getElementById('app').innerHTML = 
+         createGuessNumberHtml()
+      }
+
+      function createGuessNumberHtml() {
+         return /*HTML*/ ` 
+         <label for="guessNumber">Guess a number between 1-100</label>
+         <input oninput="emptyDisplayText()" type="number" id="guessedNumbers" min="1" max="100"></input>
+         <button id="submitAnswer" onclick="checkGuessedNumber()">Submit</button>
+         <div id="displayTxt"> ${displayText}</div>
+         <p id="guessQty">Guessed used: ${guesses} </p>`
+         ;
+      }
+      
+      function checkGuessedNumber() {
+         const guessedNumber = document.getElementById('guessedNumbers').valueAsNumber;
+         const guessTooHigh = "Sorry, that guess was too high. Try again";
+         const guessTooLow = "Sorry, that guess was too low. Try again!";
+         const correctGuess = `Congrats, you guessed the secret number in just ${guesses} guesses!`
+
+      if (guessedNumber > 100 || guessedNumber < 1) {
+         displayText = "I said a number between 1 and 100!";
+      } else if (guessedNumber > secretNumber) {
+         displayText = guessTooHigh;
+         guesses++
+      } else if (guessedNumber < secretNumber) {
+         displayText = guessTooLow;
+         guesses++
+      } else {
+         displayText = correctGuess;
+         }
+
+         updateView()
+      }
+
+      function emptyDisplayText() {
+         document.getElementById('displayTxt').innerHTML = ``;
+      }
+
+      </script>
+</body>
+</html>
