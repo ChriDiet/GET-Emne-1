@@ -4,6 +4,35 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Guess the number</title>
+
+   <style>
+      * {
+         font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 20px;
+      }
+
+      #app {
+         display: grid;
+      }
+
+      input {
+         width: 100px;
+         margin-top: 10px;
+         margin-bottom: 10px;
+      }
+      button {
+         border-radius: 5px;
+         border: none;
+         background-color: rgb(171, 223, 205);
+         font-size: 16px;
+         padding: 3px;
+         width: 70px;   
+      }
+
+      p {
+         font-size: 15px;
+      }
+   </style>
 </head>
 <body onload="updateView()">
    <div id="app"></div>
@@ -15,16 +44,12 @@
       
       function updateView() {
          document.getElementById('app').innerHTML = 
-         createGuessNumberHtml()
-      }
-
-      function createGuessNumberHtml() {
-         return /*HTML*/ ` 
+         /*HTML*/ ` 
          <label for="guessNumber">Guess a number between 1-100</label>
          <input oninput="emptyDisplayText()" type="number" id="guessedNumbers" min="1" max="100"></input>
          <button id="submitAnswer" onclick="checkGuessedNumber()">Submit</button>
-         <div id="displayTxt"> ${displayText}</div>
-         <p id="guessQty">Guessed used: ${guesses} </p>`
+         <p id="guessQty">Guesses used: ${guesses} </p>
+         <div id="displayTxt"> ${displayText}</div>`
          ;
       }
       
@@ -32,7 +57,7 @@
          const guessedNumber = document.getElementById('guessedNumbers').valueAsNumber;
          const guessTooHigh = "Sorry, that guess was too high. Try again";
          const guessTooLow = "Sorry, that guess was too low. Try again!";
-         const correctGuess = `Congrats, you guessed the secret number in just ${guesses} guesses!`
+         const correctGuess = `CONGRATS! You guessed the secret number in ${guesses} guesses!`
 
       if (guessedNumber > 100 || guessedNumber < 1) {
          displayText = "I said a number between 1 and 100!";
@@ -44,6 +69,7 @@
          guesses++
       } else {
          displayText = correctGuess;
+         guesses = 0;
          }
 
          updateView()
