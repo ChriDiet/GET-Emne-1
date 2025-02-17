@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Stein Saks Papir</title>
+
+   <style>
+
+   </style>
+</head>
+<body onload="updateView()">
+   <div id="app"></div>
+
+   <script>
+      let computersChoice = '';
+      let userChoice = '';
+      let computerScore = 0;
+      let userScore = 0;
+      let round = 0;
+      let displayWinner = '';
+      let gameOverText = ''
+      let paraText = "Beat the Computer and be the first one to get 3 points!"
+
+      
+      function updateView() {
+         document.getElementById('app').innerHTML = /*HTML*/ `
+         <h1> Rock - Paper - Scissors</h1>
+         <p style="font-size:20px"><strong>${paraText}</strong><p>
+         ${createButtons()}
+         <div id="winnerText">${displayWinner}</div><br>
+         <div id="playerScore"><strong>Your score:</strong> ${userScore}</div>
+         <div id="computerScore"><strong>Computers Score:</strong> ${computerScore}</div>
+         <div id="rounds"><strong>Rounds played:</strong> ${round}</div><br>
+         <div id="gameOver"style="font-size: 30px">${gameOverText}</div>
+         `;
+      }
+
+      function createButtonHtml(option,icon) {
+         return /*HTML*/ `
+         <button id='${option}' onclick='checkWinner("${option}")'>${icon}</button>
+         `;
+      }
+
+      function createButtons() {
+         return createButtonHtml('rock','🪨') 
+         +createButtonHtml('paper','📰') 
+         +createButtonHtml('scissors','✄') 
+      }
+
+      function getComputerChoice () {
+         let randomComputerChoice = Math.floor(Math.random() * 3 + 1);
+
+         if (randomComputerChoice === 1) {
+            computersChoice = "rock";
+         } else if (randomComputerChoice === 2) {
+            computersChoice = "paper";
+         } else if (randomComputerChoice === 3) {
+            computersChoice = "scissors";
+         }
+      }
+
+      function checkWinner(choice) {
+         userChoice = choice;
+         getComputerChoice()
+
+         if (userChoice == "rock" && computersChoice == "scissors" || 
+         userChoice == "paper" && computersChoice == "rock" || 
+         userChoice == "scissors" && computersChoice == "paper") {
+            winnerText = 'You won this round!';
+            userScore++
+            round++
+
+         } else if (userChoice == "scissors" && computersChoice == "rock" || 
+         userChoice == "rock" && computersChoice == "paper" || 
+         userChoice == "paper" && computersChoice == "scissors") {
+            winnerText = "The computer won this round :(";
+            computerScore++
+            round++
+         } else if (userChoice === computersChoice) {
+            winnerText = "It's a tie!";
+            round++
+         }
+         displayWinner = `You chose ${userChoice}, the computer chose ${computersChoice}. ${winnerText}`
+         updateView()
+         checkIfGameIsOver()
+         }
+
+         function checkIfGameIsOver () {
+            if (computerScore === 3) {
+               paraText = "Game is over, the computer won!"
+         } else if (userScore === 3) {
+            paraText = "Game is over, you won!"
+         } 
+         updateView()
+      }
+
+         
+      
+
+
+   </script>
+</body>
+</html>
