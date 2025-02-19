@@ -28,37 +28,41 @@
    <script>
       let selectedIndex = 1;
 
-
-      function createGrid() {
+      function createGrid(timeUsed) {
+         getRandomNumber()
+         timeUsed = timeUsed ?? 0;
+         timeNow = new Date().getTime();
          document.getElementById('app').innerHTML = /*HTML*/ `
-         <div id="square1" class="square" onclick="changeColor(1)"></div>
-         <div id="square2" class="square" onclick="changeColor(2)"></div>
-         <div id="square3" class="square" onclick="changeColor(3)"></div>
-         <div id="square4" class="square" onclick="changeColor(4)"></div>
-         <div id="square5" class="square" onclick="changeColor(5)"></div>
-         <div id="square6" class="square" onclick="changeColor(6)"></div>
-         <div id="square7" class="square" onclick="changeColor(7)"></div>
-         <div id="square8" class="square" onclick="changeColor(8)"></div>
-         <div id="square9" class="square" onclick="changeColor(9)"></div>
-         <div id="square10" class="square" onclick="changeColor(10)"></div>
-         <div id="square11" class="square" onclick="changeColor(11)"></div>
-         <div id="square12" class="square" onclick="changeColor(12)"></div>
-         <div id="square13" class="square" onclick="changeColor(13)"></div>
-         <div id="square14" class="square" onclick="changeColor(14)"></div>
-         <div id="square15" class="square" onclick="changeColor(15)"></div>
-         <div id="square16" class="square" onclick="changeColor(16)"></div>
+         <div id="square1" class="square" onclick="changeColor(1,timeNow)"></div>
+         <div id="square2" class="square" onclick="changeColor(2,timeNow)"></div>
+         <div id="square3" class="square" onclick="changeColor(3,timeNow)"></div>
+         <div id="square4" class="square" onclick="changeColor(4,timeNow)"></div>
+         <div id="square5" class="square" onclick="changeColor(5,timeNow)"></div>
+         <div id="square6" class="square" onclick="changeColor(6,timeNow)"></div>
+         <div id="square7" class="square" onclick="changeColor(7,timeNow)"></div>
+         <div id="square8" class="square" onclick="changeColor(8,timeNow)"></div>
+         <div id="square9" class="square" onclick="changeColor(9,timeNow)"></div>
+         <div id="square10" class="square" onclick="changeColor(10,timeNow)"></div>
+         <div id="square11" class="square" onclick="changeColor(11,timeNow)"></div>
+         <div id="square12" class="square" onclick="changeColor(12,timeNow)"></div>
+         <div id="square13" class="square" onclick="changeColor(13,timeNow)"></div>
+         <div id="square14" class="square" onclick="changeColor(14,timeNow)"></div>
+         <div id="square15" class="square" onclick="changeColor(15,timeNow)"></div>
+         <div id="square16" class="square" onclick="changeColor(16,timeNow)"></div>
+         <div> Time Spent: ${timeUsed}</div>
          `;
          document.getElementById(`square${selectedIndex}`).style.backgroundColor = "yellow";
       }
 
       function changeColor(clickedIndex) {
          if (selectedIndex == clickedIndex) {
-            console.log(selectedIndex)
-            getRandomNumber()
+            userTime = new Date().getTime();
+            timeUsed = (userTime - timeNow)/1000
+            createGrid(timeUsed)
+
          } else {
             console.log('wrong')
          }
-         createGrid()
       }
 
       function getRandomNumber () {
