@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Reaction Game</title>
+   <style>
+      #app {
+         display: grid;
+         grid-template-columns: repeat(4,100px);
+         grid-template-rows: repeat(4,100px);
+         justify-content: center;
+      }
+
+      .square {
+         height: 100px;
+         width: 100px;
+         border: 1px solid black;
+      }
+
+   </style>
+</head>
+
+<body onload="createGrid()">
+   <div id="app"> </div>
+
+   <script>
+      let selectedIndex = 1;
+
+
+      function createGrid() {
+         document.getElementById('app').innerHTML = /*HTML*/ `
+         <div id="square1" class="square" onclick="changeColor(1)"></div>
+         <div id="square2" class="square" onclick="changeColor(2)"></div>
+         <div id="square3" class="square" onclick="changeColor(3)"></div>
+         <div id="square4" class="square" onclick="changeColor(4)"></div>
+         <div id="square5" class="square" onclick="changeColor(5)"></div>
+         <div id="square6" class="square" onclick="changeColor(6)"></div>
+         <div id="square7" class="square" onclick="changeColor(7)"></div>
+         <div id="square8" class="square" onclick="changeColor(8)"></div>
+         <div id="square9" class="square" onclick="changeColor(9)"></div>
+         <div id="square10" class="square" onclick="changeColor(10)"></div>
+         <div id="square11" class="square" onclick="changeColor(11)"></div>
+         <div id="square12" class="square" onclick="changeColor(12)"></div>
+         <div id="square13" class="square" onclick="changeColor(13)"></div>
+         <div id="square14" class="square" onclick="changeColor(14)"></div>
+         <div id="square15" class="square" onclick="changeColor(15)"></div>
+         <div id="square16" class="square" onclick="changeColor(16)"></div>
+         `;
+         document.getElementById(`square${selectedIndex}`).style.backgroundColor = "yellow";
+      }
+
+      function changeColor(clickedIndex) {
+         if (selectedIndex == clickedIndex) {
+            console.log(selectedIndex)
+            getRandomNumber()
+         } else {
+            console.log('wrong')
+         }
+         createGrid()
+      }
+
+      function getRandomNumber () {
+       selectedIndex = Math.floor(Math.random() * 16 + 1);
+      }
+   </script>
+</body>
+
+</html>
