@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Reaction Game</title>
+   <style>
+      #app {
+         display: grid;
+         grid-template-columns: repeat(4,100px);
+         grid-template-rows: repeat(4,100px);
+         justify-content: center;
+      }
+
+      .square {
+         height: 100px;
+         width: 100px;
+         border: 1px solid black;
+      }
+
+   </style>
+</head>
+
+<body onload="createGrid()">
+   <div id="app"> </div>
+
+   <script>
+      let selectedIndex = 1;
+
+      function createGrid(timeUsed) {
+         getRandomNumber()
+         timeUsed = timeUsed ?? 0;
+         timeNow = new Date().getTime();
+         document.getElementById('app').innerHTML = /*HTML*/ `
+         <div id="square1" class="square" onclick="changeColor(1,timeNow)"></div>
+         <div id="square2" class="square" onclick="changeColor(2,timeNow)"></div>
+         <div id="square3" class="square" onclick="changeColor(3,timeNow)"></div>
+         <div id="square4" class="square" onclick="changeColor(4,timeNow)"></div>
+         <div id="square5" class="square" onclick="changeColor(5,timeNow)"></div>
+         <div id="square6" class="square" onclick="changeColor(6,timeNow)"></div>
+         <div id="square7" class="square" onclick="changeColor(7,timeNow)"></div>
+         <div id="square8" class="square" onclick="changeColor(8,timeNow)"></div>
+         <div id="square9" class="square" onclick="changeColor(9,timeNow)"></div>
+         <div id="square10" class="square" onclick="changeColor(10,timeNow)"></div>
+         <div id="square11" class="square" onclick="changeColor(11,timeNow)"></div>
+         <div id="square12" class="square" onclick="changeColor(12,timeNow)"></div>
+         <div id="square13" class="square" onclick="changeColor(13,timeNow)"></div>
+         <div id="square14" class="square" onclick="changeColor(14,timeNow)"></div>
+         <div id="square15" class="square" onclick="changeColor(15,timeNow)"></div>
+         <div id="square16" class="square" onclick="changeColor(16,timeNow)"></div>
+         <div> Time Spent: ${timeUsed}</div>
+         `;
+         document.getElementById(`square${selectedIndex}`).style.backgroundColor = "yellow";
+      }
+
+      function changeColor(clickedIndex) {
+         if (selectedIndex == clickedIndex) {
+            userTime = new Date().getTime();
+            timeUsed = (userTime - timeNow)/1000
+            createGrid(timeUsed)
+
+         } else {
+            console.log('wrong')
+         }
+      }
+
+      function getRandomNumber () {
+       selectedIndex = Math.floor(Math.random() * 16 + 1);
+      }
+   </script>
+</body>
+
+</html>
