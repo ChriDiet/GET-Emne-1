@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Kalkulator</title>
+   <style>
+      #calculator {
+         border: 1px solid black;
+         display: grid;
+         justify-content: center;
+         border-radius: 20px;
+         padding: 10px 0px 20px 0px;
+         width:250px;
+      }
+
+      #display {
+         height: 50px;
+         background-color: rgba(128, 128, 128, 0.209);
+         border-radius: 20px;
+         margin-bottom: 15px;
+         margin-top: 5px;
+         display: grid;
+      }
+
+      #displayNumber {
+         justify-self: end;
+         align-self: center;
+         margin-right: 30px;
+      }
+
+      #numbers {
+         display: grid;
+         grid-template-columns: repeat(4, 50px);
+         grid-template-rows: repeat(4, 50px);
+      }
+
+      .calcButton {
+         border-radius: 50%;
+         margin: 2px;
+         border: none;
+      }
+   </style>
+</head>
+
+<body onload="updateView()">
+   <div id="app"></div>
+   <script>
+      // let number1 = '';
+      // let number2 = 0;
+      // let operator;
+      let displayOnCalc = 0; 
+      let numberChosen = '' ;
+      let operator = null;
+
+
+      function updateView() {
+         document.getElementById('app').innerHTML = /*HTML*/`
+         <div id="calculator">
+            <div id="display">
+               <div id="displayNumber">${displayOnCalc}</div>
+            </div>
+            <div id="numbers">
+               ${drawNumberButtons()}
+            </div>
+         </div>
+         `;
+      }
+
+      function createNumberButtonsHtml(numberValue,buttonClass) {
+         return `<button onclick="displayNumber('${numberValue}','${buttonClass}')" class="${buttonClass}">${numberValue}</button>`
+      }
+
+      function drawNumberButtons() {
+         return createNumberButtonsHtml('7','nummer')
+            + createNumberButtonsHtml('8','nummer')
+            + createNumberButtonsHtml('9','nummer')
+            + createNumberButtonsHtml('+','operator')
+            + createNumberButtonsHtml('4','nummer')
+            + createNumberButtonsHtml('5','nummer')
+            + createNumberButtonsHtml('6','nummer')
+            + createNumberButtonsHtml('-','operator')
+            + createNumberButtonsHtml('1','nummer')
+            + createNumberButtonsHtml('2','nummer')
+            + createNumberButtonsHtml('3','nummer')
+            + createNumberButtonsHtml('*','operator')
+            + createNumberButtonsHtml('0','nummer')
+            + createNumberButtonsHtml('d','operator')
+            + createNumberButtonsHtml(',','operator')
+            + createNumberButtonsHtml('/','operator')
+      }
+
+      function displayNumber(numberValue,buttonClass) {
+         let whatButton = buttonClass;
+         if (whatButton == 'nummer' && operator == null) {
+         numberChosen += numberValue;
+         firstNumber = parseInt(numberChosen);
+         displayOnCalc = firstNumber;
+         updateView()
+         console.log(numberValue,firstNumber)
+         } else if (buttonClass === 'operator' && operator == null) {
+            operator = numberValue;
+            displayOnCalc = operator;
+            console.log(operator)
+            updateView()
+         }
+      }
+      function calculateTotalSum(number1, number2, operator) {
+         if (operator === '+') {
+            totalSum = number1 + number2;
+         } else if (operator === '-') {
+            totalSum = number1 - number2;
+         } else if (operator === '*') {
+            totalSum = number1 * number2;
+         } else if (operator === '/') {
+            totalSum = number1 - number2;
+         } else {
+            console.log('error')
+         }
+      }
+
+   </script>
+</body>
+
+</html>
