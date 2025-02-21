@@ -7,17 +7,18 @@
    <title>Kalkulator</title>
    <style>
       #calculator {
-         border: 1px solid black;
+         border: 3px solid black;
          display: grid;
          justify-content: center;
          border-radius: 20px;
          padding: 10px 0px 20px 0px;
          width:250px;
+         background-color: rgb(226, 178, 95);
       }
 
       #display {
          height: 50px;
-         background-color: rgba(128, 128, 128, 0.209);
+         background-color: rgba(255, 244, 244, 0.905);
          border-radius: 20px;
          margin-bottom: 15px;
          margin-top: 5px;
@@ -34,12 +35,38 @@
          display: grid;
          grid-template-columns: repeat(4, 50px);
          grid-template-rows: repeat(4, 50px);
+         border-radius: 10px;
+         padding: 10px;
       }
 
-      .calcButton {
+      .nummer {
          border-radius: 50%;
-         margin: 2px;
+         margin: 4px;
          border: none;
+         background-color: rgba(255, 244, 244, 0.905);
+      }
+
+      .operator {
+         border-radius: 50%;
+         margin: 4px;
+         border: none;
+         background-color: rgb(89, 80, 80);
+         color: white;
+      }
+
+      .equals {
+         border-radius: 50%;
+         margin: 4px;
+         border: none;
+         background-color: rgb(77, 78, 77);
+         color: white;
+      }
+
+      .resetCalculator {
+         border-radius: 50%;
+         margin: 4px;
+         border: none;
+         background-color: rgb(227, 89, 89);
       }
    </style>
 </head>
@@ -47,12 +74,11 @@
 <body onload="updateView()">
    <div id="app"></div>
    <script>
-      // let number1 = '';
-      // let number2 = 0;
-      // let operator;
       let displayOnCalc = 0; 
-      let numberChosen = '' ;
+      let valueChosen = '';
       let operator = null;
+      let firstNumber = null;
+      let secondNumber = null;
 
 
       function updateView() {
@@ -68,56 +94,74 @@
          `;
       }
 
-      function createNumberButtonsHtml(numberValue,buttonClass) {
-         return `<button onclick="displayNumber('${numberValue}','${buttonClass}')" class="${buttonClass}">${numberValue}</button>`
+      function createNumberButtonHtml(buttonValue,buttonClass) {
+         return `<button onclick="storeChosenValue('${buttonValue}','${buttonClass}')" class="${buttonClass}">${buttonValue}</button>`
       }
 
       function drawNumberButtons() {
-         return createNumberButtonsHtml('7','nummer')
-            + createNumberButtonsHtml('8','nummer')
-            + createNumberButtonsHtml('9','nummer')
-            + createNumberButtonsHtml('+','operator')
-            + createNumberButtonsHtml('4','nummer')
-            + createNumberButtonsHtml('5','nummer')
-            + createNumberButtonsHtml('6','nummer')
-            + createNumberButtonsHtml('-','operator')
-            + createNumberButtonsHtml('1','nummer')
-            + createNumberButtonsHtml('2','nummer')
-            + createNumberButtonsHtml('3','nummer')
-            + createNumberButtonsHtml('*','operator')
-            + createNumberButtonsHtml('0','nummer')
-            + createNumberButtonsHtml('d','operator')
-            + createNumberButtonsHtml(',','operator')
-            + createNumberButtonsHtml('/','operator')
+         return createNumberButtonHtml('7','nummer')
+            + createNumberButtonHtml('8','nummer')
+            + createNumberButtonHtml('9','nummer')
+            + createNumberButtonHtml('+','operator')
+            + createNumberButtonHtml('4','nummer')
+            + createNumberButtonHtml('5','nummer')
+            + createNumberButtonHtml('6','nummer')
+            + createNumberButtonHtml('-','operator')
+            + createNumberButtonHtml('1','nummer')
+            + createNumberButtonHtml('2','nummer')
+            + createNumberButtonHtml('3','nummer')
+            + createNumberButtonHtml('*','operator')
+            + createNumberButtonHtml('0','nummer')
+            + createNumberButtonHtml('=','equals')
+            + createNumberButtonHtml('AC','resetCalculator')
+            + createNumberButtonHtml('/','operator')
       }
 
-      function displayNumber(numberValue,buttonClass) {
-         let whatButton = buttonClass;
-         if (whatButton == 'nummer' && operator == null) {
-         numberChosen += numberValue;
-         firstNumber = parseInt(numberChosen);
-         displayOnCalc = firstNumber;
-         updateView()
-         console.log(numberValue,firstNumber)
-         } else if (buttonClass === 'operator' && operator == null) {
-            operator = numberValue;
-            displayOnCalc = operator;
-            console.log(operator)
+      function storeChosenValue(buttonValue,buttonClass) {
+         if (buttonClass === 'nummer' && operator == null ) {
+            valueChosen += buttonValue;
+            firstNumber = parseInt(valueChosen);
+            displayOnCalc = firstNumber;
             updateView()
+         } else if (buttonClass === 'operator' && firstNumber !== null && operator == null) {
+            operator = buttonValue;
+            displayOnCalc = operator;
+            valueChosen = '';
+            updateView()
+         } else if (operator !== null && firstNumber !== null && buttonClass == 'nummer') {
+            valueChosen += buttonValue;
+            secondNumber = parseInt(valueChosen);
+            displayOnCalc = valueChosen;
+            updateView()
+         } else if (buttonClass == 'equals' && firstNumber !== null && secondNumber !== null && operator !== null ) {
+            calculateChosenValues(firstNumber,secondNumber,operator)
+         } else if (buttonClass == 'resetCalculator') {
+            displayOnCalc = 0;
+            resetCalculator()
+
          }
       }
-      function calculateTotalSum(number1, number2, operator) {
+      function calculateChosenValues(firstNumber, secondNumber, operator) {
          if (operator === '+') {
-            totalSum = number1 + number2;
+            totalSum = firstNumber + secondNumber;
          } else if (operator === '-') {
-            totalSum = number1 - number2;
+            totalSum = firstNumber - secondNumber;
          } else if (operator === '*') {
-            totalSum = number1 * number2;
+            totalSum = firstNumber * secondNumber;
          } else if (operator === '/') {
-            totalSum = number1 - number2;
-         } else {
-            console.log('error')
+            totalSum = firstNumber / secondNumber;
          }
+         displayOnCalc = totalSum;
+         updateView()
+         resetCalculator()
+      }
+
+      function resetCalculator() {
+         firstNumber = null;
+         secondNumber = null;
+         valueChosen = '';
+         operator = null;
+         updateView()
       }
 
    </script>
