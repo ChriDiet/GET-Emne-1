@@ -6,7 +6,56 @@
    <title>Stein Saks Papir</title>
 
    <style>
+      #app {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+      
+      img {
+         width: 60px;
+         border: none;
+         margin: 0px;
+         cursor: pointer;
+         height: 85px;
+         z-index: -1px;
+      }
 
+      .iconsBox:hover {
+         scale: 1.2;
+      }
+
+      .iconContainer {
+         display: flex;
+         flex-direction: row;
+         justify-content: space-between;
+      }  
+
+      .iconsBox {
+         display: flex;
+         background-color: rgb(244, 237, 231);
+         padding: 15px 15px 0px 15px;
+         border-radius: 50px 50px 0px 0px;
+         height: 85px;
+         align-items: end;
+         margin: 0px 10px;
+      }
+
+      #scoreBoard {
+         background-color:rgb(244, 237, 231);;
+         height: 200px;
+         width: 400px;
+         border-radius: 20px;
+         z-index: 0;
+         display: grid;
+         grid-template-columns: 250px 200px;
+         align-content: center;
+      }
+
+      .choice {
+         height:100px;
+         width: 150px;
+      }
    </style>
 </head>
 <body onload="updateView()">
@@ -25,10 +74,16 @@
       
       function updateView() {
          document.getElementById('app').innerHTML = /*HTML*/ `
-         <h1> Rock - Paper - Scissors</h1>
+         <h1> Stein Saks Papir</h1>
          <p style="font-size:20px"><strong>${paraText}</strong><p>
-         ${createButtons()}
-         <div id="winnerText">${displayWinner}</div><br>
+         <div class="iconContainer">
+            ${createButtons()}
+         </div>
+         <div id="scoreBoard">
+            <div id="you-choice"><img class="choice" src="images/rock-you.svg"></div>
+            <div id="comp-choice"><img class="choice" src="images/scissor-comp.svg"></div>
+            <div id="winnerText">${displayWinner}</div>
+         </div>
          <div id="playerScore"><strong>Your score:</strong> ${userScore}</div>
          <div id="computerScore"><strong>Computers Score:</strong> ${computerScore}</div>
          <div id="rounds"><strong>Rounds played:</strong> ${round}</div><br>
@@ -36,16 +91,18 @@
          `;
       }
 
-      function createButtonHtml(option,icon) {
+      function createButtonHtml(option,image) {
          return /*HTML*/ `
-         <button id='${option}' onclick='checkWinner("${option}")'>${icon}</button>
+         <div class="iconsBox">
+            <img id='${option}' onclick='checkWinner("${option}")' src="images/${image}.svg"></>
+         </div>
          `;
       }
 
       function createButtons() {
-         return createButtonHtml('rock','🪨') 
-         +createButtonHtml('paper','📰') 
-         +createButtonHtml('scissors','✄') 
+         return createButtonHtml('rock','rock-icon') 
+         +createButtonHtml('paper','paper-icon') 
+         +createButtonHtml('scissors','scissor-icon') 
       }
 
       function getComputerChoice () {
