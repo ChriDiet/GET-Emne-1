@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Flytte tall</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <style>
+         #app {
+            display: grid;
+            grid-template-columns: repeat(3,100px);
+            grid-template-rows: repeat(3,100px);
+            justify-content: center;
+         }
+
+         .square {
+            border: 2px solid rgb(203, 153, 153);
+            border-radius: 3px;;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 300%;
+            cursor: pointer;
+         }
+
+
+      </style>
+   </head>
+   
+      <body onload="updateView()">
+         <div id="app"></div>
+         <script>
+            let board = '012 345678';
+            let swapNumber = false;
+
+            function updateView() {
+               document.getElementById('app').innerHTML = /*HTML*/ `
+               ${createSquareHtml(0)}
+               ${createSquareHtml(1)}
+               ${createSquareHtml(2)}
+               ${createSquareHtml(3)}
+               ${createSquareHtml(4)}
+               ${createSquareHtml(5)}
+               ${createSquareHtml(6)}
+               ${createSquareHtml(7)}
+               ${createSquareHtml(8)}
+               `;
+            }
+
+            function createSquareHtml(index) {
+               return `<div class='square' onclick='swap(${index})'>${board.charAt(index)}</div>
+               `
+            }
+
+            function swap(index) {
+               let selectedNumber = board.charAt(index);
+               let blankSquare = board.indexOf(' ');
+               neighbours(index,blankSquare)
+               console.log(index, blankSquare,swapNumber)
+
+               if (swapNumber) {
+               board = board.replace(' ', 'x');
+               board = board.replace(selectedNumber, ' ');
+               board = board.replace('x', selectedNumber); 
+               updateView()
+               } else {
+                  console.log('error');
+               }
+               }
+
+            function neighbours(index, blankSquare) {
+               if (index == 0 && (blankSquare === 1 || blankSquare === 3)) {
+                  swapNumber = true;
+               } else if (index === 1 && (blankSquare === 0 || blankSquare === 2 || blankSquare === 4)) {
+                  swapNumber = true;
+               } else if (index === 2 && (blankSquare === 5 || blankSquare === 1)) {
+                  swapNumber = true;
+               } else if (index === 3 && (blankSquare === 0 || blankSquare === 4 || blankSquare === 6)) {
+                  swapNumber = true; 
+               } else if (index === 4 && (blankSquare === 1 || blankSquare === 3 || blankSquare === 5 || blankSquare === 7)) {
+                  swapNumber = true;
+               } else if (index === 5 && (blankSquare === 2 || blankSquare === 4 || blankSquare === 8)) {
+                  swapNumber = true; 
+               } else if (index === 6 && (blankSquare === 3 || blankSquare === 7)) {
+                  swapNumber = true;
+               } else if (index === 7 && (blankSquare === 6 || blankSquare === 8 || blankSquare === 4)) {
+                  swapNumber = true;
+               } else if (index === 8 && (blankSquare === 7 || blankSquare === 5)) {
+                  swapNumber = true;
+               } else {
+                  swapNumber = false;
+            }  
+         }
+         </script>
+      </body>
+<html>
