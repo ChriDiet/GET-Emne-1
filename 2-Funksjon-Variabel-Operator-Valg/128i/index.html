@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <div id="app"></div>
+   <script>
+      
+      document.getElementById('app').innerHTML = getBiggestNumber(1,2,5)
+
+      getBiggestNumber(1,4,5);
+      function getBiggestNumber(number1,number2,number3) {
+      return (Math.max(number1, number2, number3))
+      }
+   </script>
+</body>
+</html>
