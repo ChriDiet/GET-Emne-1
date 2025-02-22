@@ -20,6 +20,7 @@
       var points = 0;
       var pointsPerClick = 1;
       var smileyIndex = 0;
+      let jukseText= '';
 
       // controller
       function doClick() {
@@ -37,6 +38,7 @@
       function upgrade() {
          points *= 10;
          pointsPerClick *= 10;
+         jukseText = "Du har jukset";
          updateView()
       }
 
@@ -49,6 +51,7 @@
             <div id="pointsInfo">${points}</div>
             <button onclick="buyUpgrade()">Kjøp oppgradering (10 poeng)</button>
             <button onclick="upgrade()">Oppgrader x 10</button>
+            <div> ${jukseText} </div>
             `;
       }
    </script>
