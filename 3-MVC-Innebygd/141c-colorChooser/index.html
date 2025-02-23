@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body onload="updateView()">
+   <div id="app"></div>
+
+   <script>
+      let chosenForegrouncColor;
+      let chosenBackgroundColor;
+      let chosenDiv = '';
+
+      function updateView() {
+         document.getElementById('app').innerHTML = /*HTML*/ `
+         <label for="foreground">Choose foreground color</label>
+         <select name="foregroundColor" id="foreground">${drawOptions()}</select>
+         <label for="background">Choose background color</label>
+         <select name="backgroundColor" id="background">${drawOptions()}</select>
+         <button onclick="addDiv()">Add a div</button>
+         <div id="divs"></div>`;
+         
+         document.body.innerHTML += `${chosenDiv}`;
+      }
+
+      function createOptionHtml(color) {
+         return `<option value="${color}">${color}</option>`
+      }
+
+      function drawOptions() {
+         return createOptionHtml('Red')
+               +createOptionHtml('Blue')
+               +createOptionHtml('Green')
+               +createOptionHtml('Beige')
+               +createOptionHtml('White')
+      }
+      function addDiv() {
+         let foregroundColor = document.getElementById('foreground').value;
+         let backgroundColor = document.getElementById('background').value;
+         chosenDiv =  /*HTML*/ `<div style="background-color:${backgroundColor}; color:${foregroundColor}; width:100px; height:100px;">Hello</div>`;
+         updateView()
+      }
+   </script>
+</body>
+</html>
