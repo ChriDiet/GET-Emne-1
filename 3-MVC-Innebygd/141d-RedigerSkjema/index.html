@@ -1,25 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+
+   <style>
+      form,
+      #profile {
+         display: grid;
+         grid-template-columns: 100px;
+         grid-template-rows: 20px 20px 20px 20px 30px;
+         gap: 4px
+      }
+
+      button {
+         margin-top: 10px;
+      }
+   </style>
 </head>
-<body>
+
+<body onload="updateView()">
+
    <div id="app"></div>
 
    <script>
-      document.getElementById('app').innerHTML = /*HTML*/ `
-      <label for="firstName">Fornavn</label>
-      <input type="text" id="firstName">
-      <label for="epost">E-post</label>
-      <input type="text" id="epost">
-      `:
+   
+      let firstName;
+      let email;
+      let userSubmitted;
+      let edit;
+
+      function updateView() {
+         document.getElementById('app').innerHTML = /*HTML*/ `
+         ${getViewHtml()} `;
+      }
+
+      function getViewHtml() {
+         if (!userSubmitted && !edit) {
+            userSubmitted = true;
+            return /*HTML*/`
+               <form>
+                  ${createFormHtml('fornavn', 'Fornavn:',firstName)}
+                  ${createFormHtml('epost', 'E-post:',email)}
+                  <button onclick="getUserInput()">Registrer</button>
+               </form>`;
+
+         } else if (userSubmitted && !edit) {
+            edit = true;
+            return /*HTML*/`
+               <div id="profile">
+                  ${createProfileHtml('Fornavn:', firstName)}
+                  ${createProfileHtml('E-post:', email)}
+                  <button onclick="updateView()">Rediger</button>
+               </div>`;
+
+         } else {
+            edit = false;
+            return /*HTML*/ `
+               <form>
+                  ${createFormHtml('fornavn', 'Fornavn:', firstName)}
+                  ${createFormHtml('epost', 'E-post:', email)}
+                  <button onclick="getUserInput()">Registrer</button>
+               </form>`;
+         }
+      }
+
+      function createFormHtml(id, labelName, inputValue) {
+         return /*HTML*/ `
+            <label for="${id}"><strong>${labelName}</strong></label>
+            <input type="text" id="${id}" name="${id}" value="${inputValue ? inputValue : ''}"/>`
+      }
+
+      function createProfileHtml(labelName, userInput) {
+         return /*HTML*/ `
+            <div><strong>${labelName}</strong></div>
+            <div>${userInput}</div>`;
+      }
 
 
-// <label for="fname">First name:</label>
-// <input type="text" id="fname" name="fname"><br><br>
-//   <label for="lname">Last name:</label>
+      function getUserInput() {
+         firstName = document.getElementById('fornavn').value;
+         email = document.getElementById('epost').value;
+         updateView()
+      }
+
+      // function drawEditForm() {
+      //    return /*HTML*/ `
+      //    <form>
+      //       ${createFormHtml('fornavn', 'Fornavn:', firstName)}
+      //       ${createFormHtml('epost', 'E-post:', email)}
+      //       <button onclick="getUserInput()">Registrer</button>
+      //    </form>`;
+      // }
+
+            // function drawForm() {
+      // return /*HTML*/`
+      //    <form>
+      //       ${createFormHtml('fornavn','Fornavn:')}
+      //       ${createFormHtml('epost','E-post:')}
+      //       <button onclick="getUserInput()">Registrer</button>
+      //    </form>`;
+      // }
+
+      // function drawProfile() {
+      //    return /*HTML*/`
+      //       <div id="profile">
+      //          ${createProfileHtml('Fornavn:',firstName)}
+      //          ${createProfileHtml('E-post:', email)}
+      //          <button onclick="updateView()">Rediger</button>
+      //       </div>`;
+      // }
+
+
+
+
+
+
+
+
    </script>
 </body>
+
 </html>
