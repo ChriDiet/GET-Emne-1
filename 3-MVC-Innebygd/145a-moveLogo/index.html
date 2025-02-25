@@ -16,11 +16,21 @@
          grid-template-rows: repeat(2, 10rem);
       }
 
-      div.buttons {
+      .buttons {
          width: 20rem;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
+         display: grid;
+         justify-content: center;
+         grid-template-columns: repeat(3, 20px);
+         grid-template-rows: repeat(3, 25px);
+         grid-template-areas: 'arrowUp arrowUp arrowUp'
+            'arrowLeft . arrowRight'
+            'arrowDown arrowDown arrowDown'
+      }
+
+      button {
+         width: 30px;
+         align-self: center;
+         justify-self: center;
       }
 
       img {
@@ -32,44 +42,92 @@
          align-items: center;
          justify-content: center;
       }
+
+      .arrowUp {
+         grid-area: arrowUp;
+      }
+
+      .arrowRight {
+         grid-area: arrowRight;
+      }
+
+      .arrowLeft {
+         grid-area: arrowLeft;
+      }
+
+      .arrowDown {
+         grid-area: arrowDown;
+      }
    </style>
 </head>
 
-<body onload="updateView()">
-   <div id="app">
-   </div>
+   <body onload="updateView()">
+      <div id="app">
+      </div>
 
-   <script>
-      let logoPosition;
-      let squaresHtml = '';
-      let squaresPosition = ['topLeft','topRight','bottomLeft','bottomRight']
+      <script>
+      let positionOnBoard = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight'];
+      let logoPositionIndex = 0;
+      let disableButtons = ['', '', '', '']
+
 
       function updateView() {
-         makeSquaresHtml()
          document.getElementById('app').innerHTML = /*HTML*/ `
          <div class="board">
-               ${squaresHtml}
+            ${makeSquaresHtml()}
             </div>
-            
-            <div class="buttons">
-               <button disabled>▲</button>
-               <div>
-                  <button disabled>◀</button>
-                  <button onclick="showBoardWithLogoUpRight()">▶</button>
-               </div>
-               <button onclick="showBoardWithLogoDownLeft()">▼</button>
-            </div>
+         <div class="buttons">
+            ${makeButtonsHtml()}
+         </div>
          `;
       }
 
       function makeSquaresHtml() {
-         for(let i = 0; i < squaresPosition.length; i++) {
-            squaresHtml += /*HTML*/`
-               <div id="${squaresPosition[i]}" class="square"></div>`;
+         let logo = '<img src="https://getacademy.no/hubfs/GET_RGB_logo-01-2.png"/>'
+         let squaresHtml = '';
+
+         for (let i = 0; i < positionOnBoard.length; i++) {
+            if (logoPositionIndex == [i]) {
+               squaresHtml += /*HTML*/`
+                  <div id="${positionOnBoard[i]}" class="square">${logo}</div>`;
+            } else {
+               squaresHtml += /*HTML*/`
+                  <div id="${positionOnBoard[i]}" class="square"></div>`;
+            }
+         }
+         return squaresHtml;
       }
-   }
 
+      function makeButtonsHtml() {
+         let moveUp = '-=2';
+         let moveLeft = '-=1';
+         let moveRight = '+=1';
+         let moveDown = '+=2';
+         let arrowDirection = ['arrowUp', 'arrowLeft', 'arrowRight', 'arrowDown'];
+         let buttonIcons = ['▲', '◀', '▶', '▼'];
+         let changeLogoPosition = [moveUp, moveLeft ,moveRight, moveDown]
+         let buttonsHtml = '';
+         for (let i = 0; i < arrowDirection.length; i++) {
+            buttonsHtml += /*HTML*/`
+               <button class="${arrowDirection[i]}" onclick="changeLogoPosition(logoPositionIndex ${changeLogoPosition[i]})" ${disableButtons[i]} >${buttonIcons[i]}</button>`;
+         }
+         return buttonsHtml;
+      }
 
+      function changeLogoPosition(direction) {
+         direction;
+         if (logoPositionIndex == 0) {
+            disableButtons = ['disabled','disabled','',''];
+         } else if (logoPositionIndex == 1) {
+            disableButtons = ['disabled','','disabled',''];
+         } else if (logoPositionIndex == 2) {
+            disableButtons = ['','disabled','','disabled'];
+         } else if (logoPositionIndex == 3) {
+            disableButtons = ['','','disabled','disabled'];
+         }
+         updateView()
+      }
+      
    </script>
 </body>
 
