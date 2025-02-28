@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Emne 1 Intro</title>
+
+   <style>
+      .buttons {
+  border-radius: 10px;
+  align-self: center;
+}
+
+button {
+  border-radius: 10px;
+  padding: 3px 5px;
+  background-color: rgb(90, 87, 87);
+  color: white;
+  margin: 3px;
+}
+
+.card {
+  border: 2px solid black;
+  margin: 15px;
+  border-radius: 5px;  
+  width: 450px;
+  background-color: rgb(234, 234, 234);
+}
+
+.innerCard {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  color: white;
+  border-radius: 1px 1px 1px 1px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 900;
+  font-family: Arial, Helvetica, sans-serif;
+  user-select: none
+}
+
+.grey {
+  background-color: rgb(85, 83, 83);
+}
+
+#head, #body, #legs{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  padding: 0px 10px;
+}
+   </style>
+</head>
+
+<body onload="updateView()">
+   <div id='app'></div>
+
+   <script>
+      let headImgNumber = 1
+      let bodyImgNumber = 1
+      let legsImgNumber = 1
+
+   function updateView() {
+      document.getElementById('app').innerHTML = /*HTML*/ `
+      <div class="card">
+         <div class="header grey">Hode, kropp og ben</div>
+            <div id="headBodyLegs">
+               ${makeBodypartCardHtml(headImgNumber,'head')}
+               ${makeBodypartCardHtml(bodyImgNumber,'body')}
+               ${makeBodypartCardHtml(legsImgNumber,'legs')}
+               </div>
+      </div> 
+      `;
+   }
+      function makeBodypartCardHtml(imageNumber,bodypart) {
+         
+         return /*HTML*/`
+            <div id="${bodypart}" class="bodyPart">
+               <button onclick="changeBodypart('${bodypart}','left')">◀</button>
+               <img src="images/${bodypart}${imageNumber}.png"/>
+               <button onclick="changeBodypart('${bodypart}','right')">▶</button>
+            </div>`;
+      }
+
+      function changeBodypart(bodypart,direction) {
+         if (direction === 'left' && bodypart == 'head' && headImgNumber !== 0)
+            headImgNumber-=1;
+         if (direction === 'left' && bodypart == 'head' && headImgNumber == 0)
+            headImgNumber = 4;
+         if (direction === 'right' && bodypart == 'head' && headImgNumber !==5)
+            headImgNumber+= 1;
+         if (direction === 'right' && bodypart == 'head' && headImgNumber == 5)
+            headImgNumber = 1;
+
+         if (direction === 'left' && bodypart == 'body' && bodyImgNumber !== 0)
+            bodyImgNumber-=1;
+         if (direction === 'left' && bodypart == 'body' && bodyImgNumber == 0)
+            bodyImgNumber = 4;
+         if (direction === 'right' && bodypart == 'body' && bodyImgNumber !==5)
+            bodyImgNumber+= 1;
+         if (direction === 'right' && bodypart == 'body' && bodyImgNumber == 5)
+            bodyImgNumber = 1;
+
+         if (direction === 'left' && bodypart == 'legs' && legsImgNumber !== 0)
+            legsImgNumber-=1;
+         if (direction === 'left' && bodypart == 'legs' && legsImgNumber == 0)
+            legsImgNumber = 4;
+         if (direction === 'right' && bodypart == 'legs' && legsImgNumber !==5)
+            legsImgNumber+= 1;
+         if (direction === 'right' && bodypart == 'legs' && legsImgNumber == 5)
+            legsImgNumber = 1; 
+         updateView()
+      }
+   </script>
+</body>
+
+</html>
