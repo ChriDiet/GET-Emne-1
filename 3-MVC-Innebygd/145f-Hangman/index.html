@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Hangman</title>
+</head>
+<body onload="updateView()">
+   
+   <div id='app'></div>
+
+   <script>
+      let guessedLetter = '';
+      let secretWord = 'Swiftly';
+      let currentWord = '_______'
+      let count = 0;
+      let usedLetters = '';
+   
+      function updateView() {
+         document.getElementById('app').innerHTML = /*HTML*/ `
+         <p>Gjett en bokstav</p>
+         <input type="text" value="${guessedLetter}" oninput = "guessedLetter = this.value">
+         <button onclick="checkGuessedLetter()">Sjekk</button>
+         <div style="margin-top: 16px;">Antall gjett: ${count}
+         <div class="riktigGjett" style="font-size: 20px; margin-top: 16px;">${currentWord}</div>
+         <div>Brukte bokstaver: ${usedLetters}</div>
+         `;
+      }
+
+      function checkGuessedLetter() {
+         let guess = guessedLetter;
+         usedLetters += guess + ' , ';
+         const index = secretWord.toUpperCase().indexOf(guessedLetter.toUpperCase());
+         if(index == -1) { 
+         guessedLetter = '';
+         updateView() 
+         return currentWord
+         }
+
+         count++
+         const textBeforeGuessedLetter = currentWord.substring(0,index);
+         const textAfterGuessedLetter = currentWord.substring(index + 1)
+         const textAfterGuessedLetter2 = secretWord.substring(index + 1)
+         currentWord = textBeforeGuessedLetter+guessedLetter.toUpperCase()+textAfterGuessedLetter;
+         guessedLetter='';
+         updateView()
+      }
+
+   </script>
+   
+</body>
+</html>
