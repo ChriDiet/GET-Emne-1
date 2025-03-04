@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Text Double</title>
+</head>
+<body onload="updateView()">
+   
+   <div id='app'></div>
+
+   <script>
+      let inputText = '';
+      let maxTextLength = null;
+   
+      function updateView() {
+         document.getElementById('app').innerHTML = /*HTML*/ `
+            <div>${makeInputFieldHtml('text','Tekst','inputText')}</div>
+            <div>${makeInputFieldHtml('number','Maks lengde', 'maxTextLength')}</div>
+            <button onclick="addText()">Gjenta</button>
+            <button onclick="reset()">Reset</button>
+            <div style="margin-top:20px; font-size: 20px;">${inputText}</div>
+         `;
+      }
+
+      function makeInputFieldHtml (type,label,variable) {
+      return /*HTML*/`
+      <label for="${type}">${label}</label>   
+      <input type="${type}" oninput="${variable}=this.value">
+      `;
+   }
+
+      function addText() {
+         maxTextLength = parseInt(maxTextLength)
+         textLength = inputText.length;
+
+
+            while(textLength * 2 <= maxTextLength) {
+            inputText+=inputText;
+            textLength = textLength *  2;
+            updateView()
+            }
+         }
+      function reset() {
+         inputText = '';
+         maxTextLength = '';
+         updateView()
+      }
+
+
+
+   </script>
+   
+</body>
+</html>
