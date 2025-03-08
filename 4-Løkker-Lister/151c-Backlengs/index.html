@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Baklengs tekst</title>
+</head>
+<body onload="updateView()">
+
+   <div id="app"></div>
+
+   <script>
+      let userInput = '';
+      let reversedText = '';
+
+      function updateView() {
+         document.getElementById("app").innerHTML = /*HTML*/ `
+         <label for="text">Skriv et ord</label>
+         <input id="text" type="text" oninput="userInput = this.value"/>
+         <button onclick="reverseText()">Snu tekst</button>
+         <div style="margin-top:20px; font-size:25px;">${reversedText}</div>
+         `;
+      }
+
+      function reverseText() {
+         for (let i = userInput.length; i >= 0; i--) {
+         reversedText += userInput.charAt(i);
+         updateView()
+      }
+      reversedText='';
+   }
+   </script>
+
+
+<!---Lag en funksjon som tar en tekst som parameter og som returnerer teksten snudd i
+// motsatt rekkefølge.For eksempel skal 'Terje' bli til 'ejreT.
+// Du kan hente ut en bestemt bokstav i en tekst ved hjelp av funksjonen charAt().
+// For eksempel vil 'Terje'.charAt(3) gi den fjerde bokstaven, 'j'. --->
+
+</body>
+</html>
