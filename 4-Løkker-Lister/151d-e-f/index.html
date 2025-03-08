@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body onload="updateView()">
+   <div id="app"></div>
+
+   <script>
+      let userInput = '';
+      let letter = '';
+      let letterCount = 0;
+
+      function updateView() {
+         document.getElementById("app").innerHTML = /*HTML*/ `
+         <label for= "text" >Skriv inn hva som helst</label >
+         <input id="text" type="text" oninput="userInput = this.value"/>
+         <label for= "letterToCount" >Hvilken bokstav skal telles?</label >
+         <input id="letterToCount" type="text" onchange="letter=this.value"/>
+         <button onclick="countLetter(letter)">Tell</button>
+         <div style="margin-top:20px; font-size:25px;">${letterCount ? "Antall " + letter.toLocaleUpperCase() + "'er: " + letterCount : ''}</div>
+         `;
+      }
+      
+
+      function countLetter(letter) {
+         for (let i = 0; i < userInput.length; i++) {
+         if (userInput.charAt(i).toLowerCase() == letter){
+         letterCount++
+      updateView()
+         }
+         updateView()
+         }
+         letterCount=0;
+      }
+   </script>
+   <!---Oppgave 151 D
+   Skriv en funksjon som teller antall a-er i en tekst.
+   
+   Oppgave 151 E
+   Utvid funksjonen så den teller både upper case og lower case.
+   
+   Oppgave 151 F
+   Utvid funksjonen i forrige oppgave til å telle en hvilken som helst bokstav, 
+   som den også tar i mot som parameter.--->
+</body>
+</html>
