@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body onload="updateView()">
+   <div id="app"></div>
+
+   <script>
+      let sentence = '';
+      let numberOfWords = '';
+      let longestWord = '';
+      let wordWithMostVocals = '';
+      let shortestWord ='';
+
+      function updateView() {
+         document.getElementById('app').innerHTML = /*HTML*/ `
+            <label for="text">Skriv en setning</label>
+            <input type="text" id="text" oninput="sentence = this.value">
+            <button onclick="getTextStatistics()">OK</button>
+            <br><br>
+            <div>${numberOfWords ? 'Antall ord i setningen: ' + numberOfWords : ''}</div>
+            <div>${longestWord ? 'Lengste ord: ' + longestWord : ''}</div>
+            <div>${shortestWord ? 'Korteste ord: ' + shortestWord : ''}</div>
+         `;
+      }
+
+      function getTextStatistics() {
+         let lengthLongestWord = 0;
+         let lengthShortestWord = 100;
+         let splitSentence = sentence.split(' ');
+         numberOfWords = splitSentence.length;
+
+         for (let i = 0; i < splitSentence.length; i++) {
+            if (splitSentence[i].length > lengthLongestWord) {
+               lengthLongestWord = splitSentence[i].length;
+               longestWord = splitSentence[i];
+            }
+         }
+         for (let i = 0; i < splitSentence.length; i++) {
+            if (splitSentence[i].length < lengthShortestWord) {
+               lengthShortestWord = splitSentence[i].length;
+               shortestWord = splitSentence[i];
+            }
+         }
+         updateView()
+      }
+
+
+
+   </script>
+</body>
+</html>
