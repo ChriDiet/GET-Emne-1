@@ -27,9 +27,18 @@
 
       function drawOutput() {
          for (let i = 0; i < 4; i++) {
-            for (let space = 4; space > i; space--) {
+            for (let space = 3; space > i; space--) {
                writeSpace()
          }
+            for (let hash = 0; hash < 2 + i * 2; hash++) {
+               writeHash()
+            }
+            writeLineBreak()
+         }
+         for (let i = 0; i < 4; i++) {
+            for (let space = 0; space < i; space++) {
+               writeSpace()
+            }
             for (let hash = 0; hash < 8 - i * 2; hash++) {
                writeHash()
             }
@@ -42,36 +51,6 @@
 
    </script>
 
-   <!-- I denne oppgaven får du litt spesielle begrensninger. Du får ikke gjøre noe annen output på skjermen enn å kalle disse
-   tre funksjonene:
-   ##
-  ####
- ######
-########
-########
- ######
-  ####
-   ##
-   <pre id="output"></pre>
-   <script>
-      function writeHash() {
-         document.getElementById('output').innerText += '#';
-      }
-
-      function writeSpace() {
-         document.getElementById('output').innerText += ' ';
-      }
-
-      function writeLineBreak() {
-         document.getElementById('output').innerText += '\n';
-      }
-   </script>
-   Bruk for-løkker til å lage følgende output:
-   
-   ########
-   ######
-   ####
-   ## -->
 </body>
 
 </html>
