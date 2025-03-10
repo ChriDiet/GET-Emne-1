@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+   <style>
+      * {
+         font-size: 30px;
+      }
+   </style>
 </head>
+
 <body onload="updateView()">
    <div id="app"></div>
 
@@ -13,7 +20,7 @@
       let numberOfWords = '';
       let longestWord = '';
       let wordWithMostVocals = '';
-      let shortestWord ='';
+      let shortestWord = '';
 
       function updateView() {
          document.getElementById('app').innerHTML = /*HTML*/ `
@@ -24,6 +31,7 @@
             <div>${numberOfWords ? 'Antall ord i setningen: ' + numberOfWords : ''}</div>
             <div>${longestWord ? 'Lengste ord: ' + longestWord : ''}</div>
             <div>${shortestWord ? 'Korteste ord: ' + shortestWord : ''}</div>
+            <div>${wordWithMostVocals ? 'Flest vokaler ord: ' + wordWithMostVocals : ''}</div>
          `;
       }
 
@@ -45,11 +53,37 @@
                shortestWord = splitSentence[i];
             }
          }
+         countVokaler()
          updateView()
       }
 
 
 
+      function countVokaler() {
+         let vokaler = ['a', 'e', 'i', 'o', 'u', 'y', 'æ', 'ø', 'å'];
+         let splitSentence = sentence.split(' ');
+         let flestVokaler = '';
+         let resultat = '';
+         let lettersInWord = '';
+
+         for (let i = 0; i < splitSentence.length; i++) {
+         lettersInWord = splitSentence[i].split(''); 
+         let tempResultat = 0;
+            
+         for (let j = 0; j < vokaler.length; j++) {
+         if ( vokaler.indexOf(lettersInWord[j]) !== -1) {
+            tempResultat++
+         }
+         if (tempResultat > resultat) {
+            resultat = tempResultat
+            wordWithMostVocals = splitSentence[i];
+         }
+      }
+      updateView()
+      }
+   }
+
    </script>
 </body>
+
 </html>
