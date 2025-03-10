@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Counting</title>
+</head>
+<body onload="updateView()">
+   <div id='app'></div>
+
+   <script>
+      let startValue = '';
+      let endValue = '';
+      let changeValueBy = '';
+      let outputDiv = '';
+      let saveStartValue = '';
+
+      function updateView() {
+         document.getElementById('app').innerHTML = /*HTML*/ `
+         ${makeInputFieldHtml('startNumber','startValue','Start verdi')}
+         ${makeInputFieldHtml('endNumber','endValue', 'Slutt verdi')}
+         ${makeInputFieldHtml('changeBy','changeValueBy', 'Endring')}
+         <button onclick="count()">Tell</button>
+         <div>${saveStartValue}<br>${outputDiv}</div>
+         `;
+      }
+      function makeInputFieldHtml(id,variabel,tekst) {
+         return /*HTML*/ `
+            <div> 
+               <label for="${id}">${tekst}</label>
+               <input type="number" oninput="${variabel} = this.valueAsNumber"> 
+            </div>
+         `;
+      }
+
+      function count() {
+         let timesRun = (endValue-startValue)/changeValueBy;
+         saveStartValue =startValue;
+         for(let i = 0; i < timesRun; i++) {
+            if (startValue < endValue) {
+               startValue += changeValueBy;
+               outputDiv += startValue.toString() + '<br>';
+               updateView();    
+            } else {
+               return;
+      } 
+   }
+   reset();
+}
+
+   function reset() {
+      startValue = '';
+      endValue = '';
+      changeValueBy = '';
+      outputDiv = '';
+      saveStartValue = '';
+   }
+
+   </script>
+   
+</body>
+</html>
