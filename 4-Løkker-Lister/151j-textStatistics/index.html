@@ -19,7 +19,7 @@
       let sentence = '';
       let numberOfWords = '';
       let longestWord = '';
-      let wordWithMostVocals = '';
+      let wordWithMostVowels = '';
       let shortestWord = '';
 
       function updateView() {
@@ -31,7 +31,7 @@
             <div>${numberOfWords ? 'Antall ord i setningen: ' + numberOfWords : ''}</div>
             <div>${longestWord ? 'Lengste ord: ' + longestWord : ''}</div>
             <div>${shortestWord ? 'Korteste ord: ' + shortestWord : ''}</div>
-            <div>${wordWithMostVocals ? 'Flest vokaler ord: ' + wordWithMostVocals : ''}</div>
+            <div>${wordWithMostVowels ? 'Flest vokaler ord: ' + wordWithMostVowels : ''}</div>
          `;
       }
 
@@ -60,23 +60,22 @@
 
 
       function countVokaler() {
-         let vokaler = ['a', 'e', 'i', 'o', 'u', 'y', 'æ', 'ø', 'å'];
-         let splitSentence = sentence.split(' ');
-         let flestVokaler = '';
-         let resultat = '';
+         let vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'æ', 'ø', 'å'];
+         let splitSentence = sentence.toLowerCase().split(' ');
+         let result = '';
          let lettersInWord = '';
 
          for (let i = 0; i < splitSentence.length; i++) {
          lettersInWord = splitSentence[i].split(''); 
-         let tempResultat = 0;
+         let tempResult = 0;
             
-         for (let j = 0; j < vokaler.length; j++) {
-         if ( vokaler.indexOf(lettersInWord[j]) !== -1) {
-            tempResultat++
+         for (let j = 0; j < vowels.length; j++) {
+         if ( vowels.indexOf(lettersInWord[j]) !== -1) {
+            tempResult++
          }
-         if (tempResultat > resultat) {
-            resultat = tempResultat
-            wordWithMostVocals = splitSentence[i];
+         if (tempResult > result) {
+            result = tempResult
+            wordWithMostVowels = splitSentence[i];
          }
       }
       updateView()
