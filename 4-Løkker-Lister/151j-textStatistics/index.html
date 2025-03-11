@@ -40,7 +40,7 @@
       function getTextStatisticsHtml() {
          let html ='';
          let parameters = [
-            { variable: longestWord, text: 'Antall ord: ' },
+            { variable: numberOfWords, text: 'Antall ord: ' },
             { variable: shortestWord, text: 'Korteste ord: ' },
             { variable: longestWord, text: 'Lengste ord: ' },
             { variable: wordWithMostVowels, text: 'Ord med flest vokaler: ' }
@@ -103,7 +103,7 @@
       function getLengthOfWord(word) {
          return word.length;
       }
-      
+
 
       function getWordWithMostVowels(sentence) {
          let wordWithMostVowels = '';
