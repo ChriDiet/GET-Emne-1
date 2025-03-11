@@ -7,7 +7,7 @@
    <title>Document</title>
    <style>
       * {
-         font-size: 30px;
+         font-size: 40px;
       }
    </style>
 </head>
@@ -16,71 +16,118 @@
    <div id="app"></div>
 
    <script>
+      // modell
+
       let sentence = '';
       let numberOfWords = '';
       let longestWord = '';
-      let wordWithMostVowels = '';
       let shortestWord = '';
+      let wordWithMostVowels = '';
+
+      //view
 
       function updateView() {
          document.getElementById('app').innerHTML = /*HTML*/ `
             <label for="text">Skriv en setning</label>
             <input type="text" id="text" oninput="sentence = this.value">
             <button onclick="getTextStatistics()">OK</button>
-            <br><br>
-            <div>${numberOfWords ? 'Antall ord i setningen: ' + numberOfWords : ''}</div>
-            <div>${longestWord ? 'Lengste ord: ' + longestWord : ''}</div>
-            <div>${shortestWord ? 'Korteste ord: ' + shortestWord : ''}</div>
-            <div>${wordWithMostVowels ? 'Flest vokaler ord: ' + wordWithMostVowels : ''}</div>
+            ${getTextStatisticsHtml()}
          `;
       }
 
-      function getTextStatistics() {
-         let lengthLongestWord = 0;
-         let lengthShortestWord = 100;
-         let splitSentence = sentence.split(' ');
-         numberOfWords = splitSentence.length;
+      //view støtte
 
-         for (let i = 0; i < splitSentence.length; i++) {
-            if (splitSentence[i].length > lengthLongestWord) {
-               lengthLongestWord = splitSentence[i].length;
-               longestWord = splitSentence[i];
-            }
+      function getTextStatisticsHtml() {
+         let html ='';
+         let parameters = [
+            { variable: longestWord, text: 'Antall ord: ' },
+            { variable: shortestWord, text: 'Korteste ord: ' },
+            { variable: longestWord, text: 'Lengste ord: ' },
+            { variable: wordWithMostVowels, text: 'Ord med flest vokaler: ' }
+         ];
+
+         for (let parameter of parameters) {
+            html += `<div>${parameter.variable ? parameter.text + parameter.variable : ''}</div>`
          }
-         for (let i = 0; i < splitSentence.length; i++) {
-            if (splitSentence[i].length < lengthShortestWord) {
-               lengthShortestWord = splitSentence[i].length;
-               shortestWord = splitSentence[i];
-            }
-         }
-         countVokaler()
+         return html;
+      }
+
+
+      //Controller
+
+      function getTextStatistics() {
+         numberOfWords = getNumberOfWords(sentence)
+         longestWord = getLongestWord(sentence)
+         shortestWord = getShortestWord(sentence)
+         wordWithMostVowels = getWordWithMostVowels(sentence)
+
          updateView()
       }
 
+      //Støtte controller
+
+      function getNumberOfWords(sentence) {
+         let words = sentence.split(' ');
+         return words.length
+      }
 
 
-      function countVokaler() {
+      function getLongestWord(sentence) {
+         let longestWord = '';
+         let words = sentence.split(' ');
+
+         for (let word of words) {
+            if (getLengthOfWord(word) > longestWord.length)
+               longestWord = word;
+         }
+         return longestWord;
+      }
+
+
+      function getShortestWord(sentence) {
+         let shortestWord = '';
+         let words = sentence.split(' ');
+
+         if (words) {
+            shortestWord = words[0];
+
+            for (let word of words) {
+               if (getLengthOfWord(word) < shortestWord.length)
+                  shortestWord = word;
+            }
+         return shortestWord;
+         }
+      }
+
+
+      function getLengthOfWord(word) {
+         return word.length;
+      }
+      
+
+      function getWordWithMostVowels(sentence) {
+         let wordWithMostVowels = '';
+         let words = sentence.toLowerCase().split(' ');
+
+         for (let word of words) {
+            if (getVowelCount(word) > getVowelCount(wordWithMostVowels))
+               wordWithMostVowels = word;
+         }
+         return wordWithMostVowels;
+      }
+      
+
+      function getVowelCount(word) {
+         let vowelCount = 0;
          let vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'æ', 'ø', 'å'];
-         let splitSentence = sentence.toLowerCase().split(' ');
-         let result = '';
-         let lettersInWord = '';
+         let letters = word.split('');
 
-         for (let i = 0; i < splitSentence.length; i++) {
-         lettersInWord = splitSentence[i].split(''); 
-         let tempResult = 0;
-            
-         for (let j = 0; j < vowels.length; j++) {
-         if ( vowels.indexOf(lettersInWord[j]) !== -1) {
-            tempResult++
+         for (let letter of letters) {
+            if (vowels.indexOf(letter) >= 0)
+               vowelCount++;
          }
-         if (tempResult > result) {
-            result = tempResult
-            wordWithMostVowels = splitSentence[i];
-         }
+         return vowelCount;
       }
-      updateView()
-      }
-   }
 
    </script>
 </body>
