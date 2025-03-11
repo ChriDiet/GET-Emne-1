@@ -31,13 +31,13 @@
             <label for="text">Skriv en setning</label>
             <input type="text" id="text" oninput="sentence = this.value">
             <button onclick="getTextStatistics()">OK</button>
-            ${getTextStatisticsHtml()}
+            ${createDivHtml()}
          `;
       }
 
       //view støtte
 
-      function getTextStatisticsHtml() {
+      function createDivHtml() {
          let html ='';
          let parameters = [
             { variable: numberOfWords, text: 'Antall ord: ' },
