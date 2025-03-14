@@ -1,0 +1,31 @@
+Ta utgangspunkt i koden som ligger <a href="github.com/GetAcademy/V25_TextAnalyzer">her</a>
+
+Du skal fullføre funksjonen analyzeText() som tar en tekst som parameter og returnerer statistikk om teksten.
+
+Det er ikke helt valgfritt hvordan du implementerer funksjonene.
+
+Objektet som returneres skal se slik ut:
+{ 
+	wordCount: 5, // Antall ord i teksten, 
+	letterCount: 15, // Antall vanlige bokstaver, 
+	nonLetterCount: 5, // Antall tegn som ikke er bokstaver, 
+	mostCommonLetter: "e", // Hvilken bokstav som er mest brukt, 
+	longestWord: "menneskerettighets­erklæring" // Det lengste ordet
+ }
+
+Hvert element i objektet skal ha sin egen funksjon som returnerer den aktuelle verdien. Disse skal hete:
+
+- getWordCount
+- getLetterCount
+- getNonLetterCount
+- vgetMostCommonLetter
+- getLongestWord
+
+For å avgjøre om et tegn er en bokstav eller ikke, skal du bruke denne funksjonen
+
+function isLetter(character) { 
+	return character.toLowerCase() != character.toUpperCase(); 
+}
+
+Se testene for mer detaljerte retningslinjer
+Alle testene skal passe.
