@@ -1,0 +1,36 @@
+<!DOTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <div id="app"></div>
+   
+   <script>
+      let numbers = []
+
+      function updateView() {
+         document.getElementById('app').innerHTML = /*HTML*/`
+            
+         `;
+      }
+
+      function counting() {
+         let minNumber  = 100;
+         let maxNumber = 1000;
+         let outputNumber = minNumber;
+         let step = 7;
+
+         for (let i = minNumber; i < maxNumber; i += step) {
+            if((outputNumber + step) < maxNumber)
+            outputNumber = (outputNumber + step)
+            console.log(outputNumber)
+         }
+      }
+
+
+   </script>
+</body>
+</html>
