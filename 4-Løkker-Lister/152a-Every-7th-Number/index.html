@@ -5,30 +5,44 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
 </head>
-<body>
+<body onload="updateView()">
    <div id="app"></div>
    
    <script>
-      let numbers = []
+      let sum = 0;
 
       function updateView() {
          document.getElementById('app').innerHTML = /*HTML*/`
-            
+         <ul>${counting(numbers)}</ul>
          `;
       }
 
-      function counting() {
-         let minNumber  = 100;
-         let maxNumber = 1000;
-         let outputNumber = minNumber;
-         let step = 7;
+      // function counting() {
+      //    let numbers =[]
+      //    let minNumber  = 100;
+      //    let maxNumber = 1000;
+      //    let outputNumber = minNumber;
+      //    let step = 7;
+      //    let html = '';
 
-         for (let i = minNumber; i < maxNumber; i += step) {
-            if((outputNumber + step) < maxNumber)
-            outputNumber = (outputNumber + step)
-            console.log(outputNumber)
+      //    for (let i = minNumber; i < maxNumber; i += step) {
+      //       if((outputNumber + step) < maxNumber)
+      //       outputNumber = (outputNumber + step)
+      //       html = `<li>${outputNumber}</li>`;
+      //       numbers.push(html)
+      //    }
+      //    return numbers;
+      // }
+      let numbers = [20,30,40,50,60]
+
+      function counting(numbers) {
+         let sum = 0;
+         for (let number of numbers) {
+            sum += number;
          }
+         return sum;
       }
+
 
 
    </script>
