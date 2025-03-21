@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Paging</title>
+</head>
+<body onload="updateView()">
+   <div id="app"></div>
+
+   <script>
+      let numbers = [];
+      let pageSize = 10;
+
+
+      function updateView() {
+         document.getElementById('app').innerHTML = /*HTML*/ `
+            ${showNumbers(1,10)}
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+         `;
+      }
+
+      function createNumbersArray() {
+         let number = '';
+         let maxNumber = 101;
+         for (let i = 0; i < maxNumber; i++) {
+         number = i;
+         numbers.push(number);
+         }
+      }
+
+      function skipAndTake(pageIndex,pageSize) {
+      let skipCount = pageIndex * pageSize;
+      let takecount = pageSize;
+      let newNumbers = [];
+         for (let number of numbers) {
+            skipCount--;
+            if (skipCount >= 0)continue;
+            if(takecount <=0) break;
+            takecount--;
+         newNumbers.push(number);
+         }
+         return newNumbers;
+      }
+
+      function showNumbers(pageIndex,pageSize) {
+         createNumbersArray()
+         let numbersToShow = skipAndTake(pageIndex,pageSize);
+         let html = '';
+         
+
+         for (let number of numbersToShow) {
+            html += /*HTML*/ `
+            <li>
+               ${number}
+            </li>
+            `;
+         }
+         return html;
+      }
+
+
+
+      // let filteredNumbers = [];
+      // variabel.includes(text)
+
+   </script>
+   
+</body>
+</html>
