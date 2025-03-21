@@ -25,45 +25,6 @@
          }
       }
 
-      function skipAndTake(pageIndex) {
-         let skipCount = pageIndex * pageSize;
-         let takecount = pageSize;
-         let newNumbers = [];
-         numbersToDisplay = [];
-         for (let number of numbers) {
-            skipCount--;
-            if (skipCount >= 0) continue;
-            if (takecount <= 0) break;
-            takecount--;
-            numbersToDisplay.push(number);
-         }
-         updateView()
-      }
-
-      function createNumbersListHtml() {
-         let html = '';
-
-         for (let number of numbersToDisplay) {
-            html += /*HTML*/ `
-            <li>
-               ${number}
-            </li>
-            `;
-         }
-         return html;
-      }
-
-      function createButtonsHtml() {
-         let numberOfButtons = Math.ceil(numbers.length/pageSize);
-         let html = '';
-         for (let i = 0; i < numberOfButtons; i++) {
-            html += /*HTML*/ `
-               <button onclick="skipAndTake(${[i]})">${[i+1]}</button>
-            `;
-         }
-         return html;
-      }
-
    </script>
 
 </body>
