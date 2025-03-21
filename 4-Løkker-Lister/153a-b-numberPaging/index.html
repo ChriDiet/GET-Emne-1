@@ -1,58 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Paging</title>
+   <script src="model.js"></script>
+   <script src="controller.js"></script>
+   <script src="view.js"></script>
 </head>
+
 <body onload="updateView()">
    <div id="app"></div>
-
    <script>
-      let numbers = [];
-      let pageSize = 10;
-
-
-      function updateView() {
-         document.getElementById('app').innerHTML = /*HTML*/ `
-            ${showNumbers(1,10)}
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-         `;
-      }
+      createNumbersArray()
+      skipAndTake(0)
 
       function createNumbersArray() {
          let number = '';
-         let maxNumber = 101;
-         for (let i = 0; i < maxNumber; i++) {
-         number = i;
-         numbers.push(number);
+         let maxNumber = 125;
+         for (let i = 1; i < maxNumber; i++) {
+            number = i;
+            numbers.push(number);
          }
       }
 
-      function skipAndTake(pageIndex,pageSize) {
-      let skipCount = pageIndex * pageSize;
-      let takecount = pageSize;
-      let newNumbers = [];
+      function skipAndTake(pageIndex) {
+         let skipCount = pageIndex * pageSize;
+         let takecount = pageSize;
+         let newNumbers = [];
+         numbersToDisplay = [];
          for (let number of numbers) {
             skipCount--;
-            if (skipCount >= 0)continue;
-            if(takecount <=0) break;
+            if (skipCount >= 0) continue;
+            if (takecount <= 0) break;
             takecount--;
-         newNumbers.push(number);
+            numbersToDisplay.push(number);
          }
-         return newNumbers;
+         updateView()
       }
 
-      function showNumbers(pageIndex,pageSize) {
-         createNumbersArray()
-         let numbersToShow = skipAndTake(pageIndex,pageSize);
+      function createNumbersListHtml() {
          let html = '';
-         
 
-         for (let number of numbersToShow) {
+         for (let number of numbersToDisplay) {
             html += /*HTML*/ `
             <li>
                ${number}
@@ -62,12 +53,19 @@
          return html;
       }
 
-
-
-      // let filteredNumbers = [];
-      // variabel.includes(text)
+      function createButtonsHtml() {
+         let numberOfButtons = Math.ceil(numbers.length/pageSize);
+         let html = '';
+         for (let i = 0; i < numberOfButtons; i++) {
+            html += /*HTML*/ `
+               <button onclick="skipAndTake(${[i]})">${[i+1]}</button>
+            `;
+         }
+         return html;
+      }
 
    </script>
-   
+
 </body>
+
 </html>
