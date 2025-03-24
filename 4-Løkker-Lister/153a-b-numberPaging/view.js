@@ -5,17 +5,23 @@
       <div> 
          Antall treff 
          <select onchange="setPageSize(value)" name="pageView" id="pageView" value="value">
-            <option value=10 ${selectedPageSize == 10 ? 'selected' : ''}>10</option>
-            <option value=20 ${selectedPageSize == 20 ? 'selected' : ''}>20</option>
-            <option value=50 ${selectedPageSize == 50 ? 'selected' : ''}>50</option>
+            ${createShowResultsHtml()}
          </select>
       </div>
    `;
 }
 
-function createResultSelectorHtml() {
+function createShowResultsHtml() {
    let resultQty = [10,20,50];
+   let html = '';
+   let isSelected = "${selectedPageSize == `${qty}` ? 'selected' : ''}"
    
+   for (let qty of resultQty) {
+      html+= /*HTML*/ `
+         <option value=${qty} ${selectedPageSize == `${qty}` ? 'selected' : ''}>${qty}</option>
+      `;
+   }
+   return html;
 }
 
 function setPageSize(size) {

@@ -9,5 +9,6 @@ function skipAndTake(pageIndex) {
       takecount--;
       numbersToDisplay.push(number);
    }
+   createNumbersListHtml(numbersToDisplay)
    updateView()
 }
